@@ -1,10 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faFutbol} from '@fortawesome/free-solid-svg-icons'
+import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
+import {faSearch} from '@fortawesome/free-solid-svg-icons'
 
 function App() {
     return (
         <div className="flexbox-wrapper">
-            <header className="header">Header</header>
+            <header className="header">
+                <span><FontAwesomeIcon icon={faFutbol} className="header-football"/><h1>footyScore</h1></span>
+                <nav>
+                    <ul>
+                        {/*Dit wordt later vervangen door link to*/}
+
+                        <li><a href="/">Results</a></li>
+                        <li><a href="/">Favorites</a></li>
+                        <li><a href="/">Live scores</a></li>
+                    </ul>
+                </nav>
+                <a href="/" className="search"><FontAwesomeIcon icon={faSearch}/></a>
+                <a href="/"><FontAwesomeIcon icon={faUserCircle}/></a>
+            </header>
             <aside className="sidebar-left">Sidebar</aside>
             <main className="main">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean interdum aliquet eros, a suscipit turpis
