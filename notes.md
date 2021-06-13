@@ -7,3 +7,4 @@
 5. voor nu staan de asides hidden, maar daar wil ik nog iets mee in de toekomst.
 6. z-index van 10000 voor de sticky header.
    Based on the natural order of things, headers typically have a lower z-index than almost every other element on a page, because they appear at the very top. So when you have a header fixed to the top of a viewport scrolling past items with higher z-indexes, everything else on the page is going to overlap the header, which isn’t exactly the look we’re going for. This can be easily fixed with z-index. When using z-index for this purpose, I like to assign the header a super high z-index, just to be safe. See below for a code snippet on how to implement this effect:
+   7. Ik gebruik classnames bij het weergeven van de wedstrijden omdat classnames op meerdere 

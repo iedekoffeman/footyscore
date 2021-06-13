@@ -24,6 +24,7 @@ function App() {
             <aside className="sidebar-left">Sidebar</aside>
             <main className="main">
                 <article className="competition-content">
+                    <p className="country">Holland</p>
                     <section className="match">
                         <section className="team">
                             <p className="home-team">Feyenoord</p>
@@ -39,6 +40,7 @@ function App() {
                     </section>
                 </article>
                 <article className="competition-content">
+                    <p className="country">England</p>
                     <section className="match">
                         <section className="team">
                             <p className="home-team">Feyenoord</p>

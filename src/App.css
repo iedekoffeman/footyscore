@@ -1,16 +1,18 @@
 :root {
-  --main-bg-color: #E6E6E6;
-  --main-text-color: #000000;
+  --standard-bg-color: #E6E6E6;
+  --standard-text-color: #000000;
   --secondary-text-color: #2DCCF5;
+  --header-footer-bg-color: #000000;
+  --header-footer-text-color: #FFFFFF;
 }
 body {
-  background-color: var(--main-bg-color);
+  background-color: var(--standard-bg-color);
   margin: 0;
   padding: 0;
 }
 body > * {
+  color: var(--standard-text-color);
   text-align: center;
-  color: white;
 }
 .flexbox-wrapper {
   display: flex;
@@ -18,7 +20,7 @@ body > * {
 }
 .header,
 .footer {
-  background-color: black;
+  background-color: var(--header-footer-bg-color);
 }
 .header {
   display: flex;
@@ -37,7 +39,7 @@ body > * {
 }
 .header h1 {
   display: inline-block;
-  color: #2DCCF5;
+  color: var(--secondary-text-color);
   font-size: 1.2em;
 }
 nav ul {
@@ -60,7 +62,6 @@ header a {
   font-size: 1.3em;
   padding: 0 10px;
 }
-
 a:link {
   color: white;
   text-decoration: none;
@@ -72,11 +73,11 @@ a:visited {
 }
 
 a:hover {
-  color: #2DCCF5;
+  color: var(--secondary-text-color);
 }
 
 a:active {
-  color: #2DCCF5;
+  color: var(--secondary-text-color);
 }
 
 .search {
@@ -96,32 +97,43 @@ a:active {
   text-align: center;
   padding: 100px 0;
   background-color: white;
-  color: black;
+}
+.competition-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.country {
+  margin: 20px 0 0 60px;
+  align-self: flex-start;
 }
 .match {
-  width: 95%;
   display: flex;
-  justify-content: space-between;
+  width: 95%;
   font-size: 20px;
-  margin: 15px 0 0 20px;
+  margin: 15px 0 0 0;
   font-weight: 400;
   border: 1px solid lightgray;
 }
 .team {
   display: flex;
   flex-direction: column;
-  margin: 0 0 0 10px;
+  align-items: flex-start;
+  margin: 0 0 50px 10px;
 }
 .score {
   flex: 3;
-  display: flex;
-  flex-direction: column;
 }
 .match-info-options {
   flex: 1;
+  color: var(--secondary-text-color);
 }
 .home-team, .home-team-score {
   margin-bottom: 10px;
+}
+.away-team, .away-team-score {
+  margin: 0;
 }
 @media only screen and (min-width: 768px) {
   .flexbox-wrapper {
