@@ -9,6 +9,7 @@ body {
   background-color: var(--standard-bg-color);
   margin: 0;
   padding: 0;
+  color: var(--secondary-text-color)
 }
 body > * {
   color: var(--standard-text-color);
@@ -21,6 +22,7 @@ body > * {
 .header,
 .footer {
   background-color: var(--header-footer-bg-color);
+  color: var(--header-footer-text-color);
 }
 .header {
   display: flex;
@@ -54,7 +56,7 @@ nav ul li {
   padding: 0;
 }
 
-nav ul li a {
+nav ul li  {
   font-size: 1em;
 }
 
@@ -62,24 +64,16 @@ header a {
   font-size: 1.3em;
   padding: 0 10px;
 }
-a:link {
+.main-nav {
   color: white;
   text-decoration: none;
 }
-
-a:visited {
-  color: white;
-  text-decoration: underline;
+.main-nav-active {
+  border-bottom: 2px solid var(--secondary-text-color);
 }
-
-a:hover {
+.main-nav:hover {
   color: var(--secondary-text-color);
 }
-
-a:active {
-  color: var(--secondary-text-color);
-}
-
 .search {
   margin-left: auto;
   padding-right: 5px;
