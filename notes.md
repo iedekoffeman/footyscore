@@ -1,7 +1,7 @@
 - npm packages fontawesome
 
-1. Position fixed voor de header omdat ik wil dat hij in beeld blijft.
-2. Flex grid omdat ik later nog iets wil doen aan de linker en rechterkant, met flex grid is dit gemakkelijker en daarom sorteer vast voor op de toekomst.
+1. Position fixed voor de header omdat ik wil dat hij in beeld blijft. fixed will not occupy any space in the body so the next element will be behind the fixed elemend, sticky position occupies the space, so the next element will not be hidden behind it. 
+2. flexbox omdat het een one dimensional layout is en geen ingewikkelde. Dus kom je hier prima mee uit de voeten.
 3. fontawesome gebruikt voor icons, +keuze voor individueel gebruik over global omdat bij global ook onnodige icons geimplementeerd worden en dat kan de performance naar beneden halen, bovendien gebruikt de app momenteel niet veel icons
 4. Header buiten de grid geplaatst omdat ik hem sticky wilde hebben.
 5. voor nu staan de asides hidden, maar daar wil ik nog iets mee in de toekomst.
