@@ -23,6 +23,7 @@ function App() {
             </header>
             <aside className="sidebar-left">Sidebar</aside>
             <main className="main">
+                <h2>Results</h2>
                 <article className="competition-content">
                     <p className="country">Holland</p>
                     <section className="match">
