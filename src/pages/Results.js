@@ -1,44 +1,29 @@
 import React from 'react';
+import Competition from '../components/Competition'
 
 function ResultsPage() {
     return (
         <>
             <h2>Results</h2>
-            <article className="competition-content">
-                <p className="country">Holland</p>
-                <section className="match">
-                    <section className="team">
-                        <p className="home-team">Feyenoord</p>
-                        <p className="away-team">Ajax</p>
-                    </section>
-                    <section className="score">
-                        <p className="home-team-score">3</p>
-                        <p className="away-team-score">0</p>
-                    </section>
-                    <section className="match-info-options">
-                        <p className="competition-name">Eredivisie</p>
-                    </section>
-                </section>
-            </article>
-            <article className="competition-content">
-                <p className="country">England</p>
-                <section className="match">
-                    <section className="team">
-                        <p className="home-team">Feyenoord</p>
-                        <p className="away-team">Ajax</p>
-                    </section>
-                    <section className="score">
-                        <p className="home-team-score">3</p>
-                        <p className="away-team-score">0</p>
-                    </section>
-                    <section className="match-info-options">
-                        <p className="competition-name">Eredivisie</p>
-                    </section>
-                </section>
-            </article>
+            <Competition
+                country="Holland"
+                home_team="Feyenoord"
+                away_team="Ajax"
+                home_team_score="0"
+                away_team_score="0"
+                competition="Eredivisie"
+                />
+            <Competition
+                country="England"
+                home_team="Arsenal"
+                away_team="Chelsea"
+                home_team_score="3"
+                away_team_score="1"
+                competition="Premier League"
+            />
         </>
     )
-        ;
+
 }
 
 export default ResultsPage;

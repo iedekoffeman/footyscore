@@ -7,11 +7,12 @@ import {
 } from 'react-router-dom';
 import ResultsPage from './pages/Results';
 import FavoritesPage from './pages/Favorites';
+import LiveScoresPage from "./pages/Live-scores";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faFutbol} from '@fortawesome/free-solid-svg-icons'
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
-import LiveScoresPage from "./pages/Live-scores";
+
 
 function App() {
     return (
