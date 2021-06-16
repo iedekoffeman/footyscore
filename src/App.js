@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React from 'react';
 import './App.css';
 import {
     BrowserRouter as Router,
@@ -15,36 +14,9 @@ import {faFutbol} from '@fortawesome/free-solid-svg-icons'
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 
-const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 
 function App() {
 
-    const [matchData, setMatchData] = useState(null);
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const result = await
-                    axios.get(`https://api.football-data.org/v2/matches`, {
-                        headers: {
-                            "X-Auth-Token": `${apikey}`,
-                        }
-                    });
-                console.log(result.data);
-                setMatchData(result.data);
-
-
-            } catch (e) {
-                console.error(e);
-            }
-
-
-        }
-
-        fetchData();
-
-    }, []);
-
-    console.log(matchData);
 
     return (
         <Router>
