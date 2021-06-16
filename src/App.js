@@ -1,3 +1,5 @@
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import './App.css';
 import {
     BrowserRouter as Router,
@@ -13,8 +15,37 @@ import {faFutbol} from '@fortawesome/free-solid-svg-icons'
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 
+const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 
 function App() {
+
+    const [matchData, setMatchData] = useState(null);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const result = await
+                    axios.get(`https://api.football-data.org/v2/matches`, {
+                        headers: {
+                            "X-Auth-Token": `${apikey}`,
+                        }
+                    });
+                console.log(result.data);
+                setMatchData(result.data);
+
+
+            } catch (e) {
+                console.error(e);
+            }
+
+
+        }
+
+        fetchData();
+
+    }, []);
+
+    console.log(matchData);
+
     return (
         <Router>
             <div className="flexbox-wrapper">
@@ -24,9 +55,12 @@ function App() {
                         <ul>
                             {/*Dit wordt later vervangen door link to*/}
 
-                            <li><NavLink to="/" exact={true} className="main-nav" activeClassName="main-nav-active">Results</NavLink></li>
-                            <li><NavLink to="/favorites" className="main-nav" activeClassName="main-nav-active">Favorites</NavLink></li>
-                            <li><NavLink to="/live-scores" className="main-nav" activeClassName="main-nav-active">Live scores</NavLink></li>
+                            <li><NavLink to="/" exact={true} className="main-nav"
+                                         activeClassName="main-nav-active">Results</NavLink></li>
+                            <li><NavLink to="/favorites" className="main-nav"
+                                         activeClassName="main-nav-active">Favorites</NavLink></li>
+                            <li><NavLink to="/live-scores" className="main-nav" activeClassName="main-nav-active">Live
+                                scores</NavLink></li>
                         </ul>
                     </nav>
                     <a href="/" className="search"><FontAwesomeIcon icon={faSearch}/></a>
@@ -37,13 +71,13 @@ function App() {
                 <main className="main">
                     <Switch>
                         <Route exact path="/">
-                        <ResultsPage />
+                            <ResultsPage/>
                         </Route>
                         <Route path="/favorites">
-                        <FavoritesPage />
+                            <FavoritesPage/>
                         </Route>
                         <Route path="/live-scores">
-                            <LiveScoresPage />
+                            <LiveScoresPage/>
                         </Route>
                     </Switch>
                 </main>
