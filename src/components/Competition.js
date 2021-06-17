@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+
 import axios from "axios";
 import Match from '../components/Match'
 
@@ -12,12 +13,12 @@ function Competition(props) {
         async function fetchData() {
             try {
                 const result = await
-                    axios.get(`http://api.football-data.org/v2/competitions/${props.competitionID}/matches?matchday=1`, {
+                    axios.get(`https://api.football-data.org/v2/matches?competitions=${props.competitionID}&status=FINISHED&dateFrom=2021-06-16&dateTo=2021-06-16`, {
                         headers: {
                             "X-Auth-Token": `${apikey}`,
                         }
                     });
-                console.log(result.data);
+                console.log('Matches:', result.data);
                 setMatchData(result.data);
 
 
@@ -32,19 +33,20 @@ function Competition(props) {
 
     }, [props.competitionID]);
 
-    console.log(matchData);
+    console.log("matchesDD", matchData);
 
     return (
         <>
             {
-                matchData ? (
+                matchData && matchData.matches.length  ? (
 
                     <article className="competition-content">
-                        <p className="country">{props.countryName}</p>
+
+                         <p className="country">{props.countryName}</p>
 
                         {matchData.matches.map((match) => {
-                                console.log(match)
-                                return <Match match={match} competitionName={matchData.competition.name}/>
+                                console.log('Match', match)
+                                return <Match match={match} competitionName={match.competition.name}/>
 
 
                             }
@@ -53,11 +55,13 @@ function Competition(props) {
                     </article>
 
 
+                ) : matchData && !matchData.matches.length ? (
+
+                    <></>
+
                 ) : (
-
-                    <h3>Loading</h3>
-
-                )}
+                   <>Loading</>
+                ) }
         </>
     )
 }

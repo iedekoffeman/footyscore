@@ -1,8 +1,9 @@
+
 function Match(props) {
     return (
 <>
         {
-            props.match && props.match.status === "FINISHED" ? (
+            props.match ?  (
 
 
                     <section className="match">
