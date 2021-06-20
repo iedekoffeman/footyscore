@@ -27,12 +27,11 @@ function App() {
                         <ul>
                             {/*Dit wordt later vervangen door link to*/}
 
-                            <li><NavLink to="/" exact={true} className="main-nav"
+                            <li key={"results"}><NavLink to="/" exact={true} className="main-nav"
                                          activeClassName="main-nav-active">Results</NavLink></li>
-                            <li><NavLink to="/favorites" className="main-nav"
+                            <li key={"favorites"}><NavLink to="/favorites" className="main-nav"
                                          activeClassName="main-nav-active">Favorites</NavLink></li>
-                            <li><NavLink to="/live-scores" className="main-nav" activeClassName="main-nav-active">Live
-                                scores</NavLink></li>
+                            <li key={"live-scores"}><NavLink to="/live-scores" className="main-nav" activeClassName="main-nav-active">Live scores</NavLink></li>
                         </ul>
                     </nav>
                     <a href="/" className="search"><FontAwesomeIcon icon={faSearch}/></a>

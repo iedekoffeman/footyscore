@@ -1,9 +1,9 @@
-
 function Match(props) {
+
     return (
-<>
-        {
-            props.match ?  (
+        <>
+            {
+                props.match ? (
 
 
                     <section className="match">
@@ -21,13 +21,13 @@ function Match(props) {
                     </section>
 
 
-            ) : (
+                ) : (
 
-           <></>
-)}
-</>
+                    <></>
+                )}
+        </>
 
-)
+    )
 }
 
 export default Match;
