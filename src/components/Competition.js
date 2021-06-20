@@ -38,15 +38,16 @@ function Competition(props) {
     return (
         <>
             {
-                matchData && matchData.matches.length  ? (
+                matchData && matchData.matches.length ? (
 
                     <article className="competition-content">
 
-                         <p className="country">{props.countryName}</p>
+                        <p className="country">{props.countryName}</p>
 
                         {matchData.matches.map((match) => {
                                 console.log('Match', match)
-                                return <Match match={match} competitionName={match.competition.name}/>
+                                return <Match key={match.id} matchID={match.id} match={match}
+                                              competitionName={match.competition.name}/>
 
 
                             }
@@ -60,8 +61,8 @@ function Competition(props) {
                     <></>
 
                 ) : (
-                   <>Loading</>
-                ) }
+                    <>Loading</>
+                )}
         </>
     )
 }

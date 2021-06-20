@@ -1,6 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import Competition from '../components/Competition'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+
+
+
 
 
 const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
@@ -21,14 +27,13 @@ function ResultsPage() {
 
                 const result = response.data.competitions.filter(response =>
 
-                    response.id === 2018  ||
-                    response.id === 2003  ||
-                    response.id === 20021 ||
-                    response.id === 20015 ||
-                    response.id === 2002  ||
-                    response.id === 2019  ||
+                    response.id === 2018 ||
+                    response.id === 2003 ||
+                    response.id === 2021 ||
+                    response.id === 2015 ||
+                    response.id === 2002 ||
+                    response.id === 2019 ||
                     response.id === 2014
-
                 );
 
                 result.sort(function (a, b) {
@@ -57,11 +62,24 @@ function ResultsPage() {
         <>
             <h2>Results</h2>
 
+            <ul className={"nav-date"}>
+                <li><FontAwesomeIcon className={"chevronIcon"} icon={faChevronLeft}/></li>
+                <li>20 JUN</li>
+                <li>21 JUN</li>
+                <li>22 JUN</li>
+                <li>23 JUN</li>
+                <li>24 JUN</li>
+                <li>25 JUN</li>
+                <li>26 JUN</li>
+                <li>27 JUN</li>
+                <li><FontAwesomeIcon className={"chevronIcon"} icon={faChevronRight}/></li>
+            </ul>
+
             {competitionData ? (
                 <>
                     {competitionData.map((competition) => {
 
-                        return <Competition key={competition.competitionID} competitionID={competition.id}
+                        return <Competition key={competition.id} competitionID={competition.id}
                                             countryName={competition.area.name}/>
 
                     })}
