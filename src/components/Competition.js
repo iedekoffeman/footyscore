@@ -1,5 +1,10 @@
 import React, {useState, useEffect} from 'react';
-
+import {useParams} from 'react-router-dom';
+import {
+    format,
+    isDate,
+    isValid,
+} from 'date-fns'
 import axios from "axios";
 import Match from '../components/Match'
 
@@ -8,12 +13,20 @@ const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 function Competition(props) {
 
     const [matchData, setMatchData] = useState(null);
+    const {fromToDate = `${format(new Date(), 'yyyy-MM-dd')}`} = useParams();
+    //const isThisADate = isDate(new Date(fromToDate));
+    const[error, setError] = useState("");
+   console.log("date in competition", fromToDate)
 
     useEffect(() => {
+
+        //console.log("isDate", isThisADate)
+
         async function fetchData() {
             try {
+
                 const result = await
-                    axios.get(`https://api.football-data.org/v2/matches?competitions=${props.competitionID}&status=FINISHED&dateFrom=2021-06-16&dateTo=2021-06-16`, {
+                    axios.get(`https://api.football-data.org/v2/matches?competitions=${props.competitionID}&status=FINISHED&dateFrom=${fromToDate}&dateTo=${fromToDate}`, {
                         headers: {
                             "X-Auth-Token": `${apikey}`,
                         }
@@ -29,9 +42,9 @@ function Competition(props) {
 
         }
 
-        fetchData();
+        fetchData()
 
-    }, [props.competitionID]);
+    }, [props.competitionID, fromToDate]);
 
     console.log("matchesDD", matchData);
 
@@ -58,7 +71,7 @@ function Competition(props) {
 
                 ) : matchData && !matchData.matches.length ? (
 
-                    <></>
+                    <p>There are no matches for this date</p>
 
                 ) : (
                     <>Loading</>

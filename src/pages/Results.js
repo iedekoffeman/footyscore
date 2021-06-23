@@ -1,13 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import Competition from '../components/Competition'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
-import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
-
-
-
-
+import NavigationDateBar from "../components/NavigationDateBar";
 
 const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 
@@ -62,18 +56,7 @@ function ResultsPage() {
         <>
             <h2>Results</h2>
 
-            <ul className={"nav-date"}>
-                <li><FontAwesomeIcon className={"chevronIcon"} icon={faChevronLeft}/></li>
-                <li>20 JUN</li>
-                <li>21 JUN</li>
-                <li>22 JUN</li>
-                <li>23 JUN</li>
-                <li>24 JUN</li>
-                <li>25 JUN</li>
-                <li>26 JUN</li>
-                <li>27 JUN</li>
-                <li><FontAwesomeIcon className={"chevronIcon"} icon={faChevronRight}/></li>
-            </ul>
+            <NavigationDateBar />
 
             {competitionData ? (
                 <>
