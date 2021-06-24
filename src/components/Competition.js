@@ -75,18 +75,18 @@ function Competition(props) {
 
                     </article>
 
-                ) : matchData && !matchData.matches.length ?  (
+                ) : matchData && !matchData.matches.length ? (
 
-                         <></>
+                    <></>
 
-        ) : error ? (
+                ) : error ? (
 
-            <p>Er is iets misgegaan met het ophalen van de data.</p>
+                    <p>Er is iets misgegaan met het ophalen van de data.</p>
 
-        ) : loading && (
+                ) : loading && (
 
-            <p>Loading...</p>
-        )}
+                    <p>Loading...</p>
+                )}
 
         </>
     )

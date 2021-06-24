@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {
     Switch,
@@ -17,11 +17,66 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faFutbol} from '@fortawesome/free-solid-svg-icons'
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
+import axios from "axios";
 
+const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 
 function App() {
 
     const {pathname} = useLocation();
+    const [error, setError] = useState(false);
+    const [loading, toggleLoading] = useState();
+
+    const [competitionData, setCompetitionData] = useState(null);
+
+    useEffect(() => {
+        async function fetchData() {
+
+            setError(false);
+            toggleLoading(true);
+
+            try {
+                const response = await
+                    axios.get(`https://api.football-data.org/v2/competitions?plan=TIER_ONE`, {
+                        headers: {
+                            "X-Auth-Token": `${apikey}`,
+                        }
+                    });
+                console.log(response.data);
+
+                const result = response.data.competitions.filter(response =>
+
+                    response.id === 2018 ||
+                    response.id === 2003 ||
+                    response.id === 2021 ||
+                    response.id === 2015 ||
+                    response.id === 2002 ||
+                    response.id === 2019 ||
+                    response.id === 2014
+                );
+
+                result.sort(function (a, b) {
+                    return a.id - b.id;
+                });
+
+                setCompetitionData(result);
+
+
+            } catch (e) {
+                console.error(e);
+                setError(true);
+                toggleLoading(false);
+            }
+
+
+        }
+
+        fetchData();
+
+    }, []);
+
+    console.log('competition', competitionData);
+
     console.log(['results'].includes(pathname.split('/')[1]));
     return (
 
@@ -80,13 +135,13 @@ function App() {
                         />
                     </Route>
                     <Route path="/results/:fromToDate">
-                        <ResultsPage/>
+                        <ResultsPage competitions={competitionData} error={error} loading={loading}/>
                     </Route>
                     <Route path="/favorites">
                         <FavoritesPage/>
                     </Route>
                     <Route path="/live-scores">
-                        <LiveScoresPage/>
+                        <LiveScoresPage competitions={competitionData} error={error} loading={loading}/>
                     </Route>
                     <Route path="/">
                         <h1>404 page not found, sorry...</h1>
