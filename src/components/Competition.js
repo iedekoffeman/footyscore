@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {
     format,
-    isDate,
-    isValid,
 } from 'date-fns'
 import axios from "axios";
 import Match from '../components/Match'
@@ -14,19 +12,25 @@ function Competition(props) {
 
     const [matchData, setMatchData] = useState(null);
     const {fromToDate = `${format(new Date(), 'yyyy-MM-dd')}`} = useParams();
-    //const isThisADate = isDate(new Date(fromToDate));
-    const[error, setError] = useState("");
-   console.log("date in competition", fromToDate)
+    const [error, setError] = useState(false);
+    const [loading, toggleLoading] = useState();
+
+    console.log("date in competition", fromToDate)
+
 
     useEffect(() => {
 
         //console.log("isDate", isThisADate)
 
         async function fetchData() {
+
+            setError(false);
+            toggleLoading(true);
+
             try {
 
                 const result = await
-                    axios.get(`https://api.football-data.org/v2/matches?competitions=${props.competitionID}&status=FINISHED&dateFrom=${fromToDate}&dateTo=${fromToDate}`, {
+                    axios.get(`https://api.football-data.org/v2/matches?competitions=${props.competitionID}&status=${props.status}&dateFrom=${fromToDate}&dateTo=${fromToDate}`, {
                         headers: {
                             "X-Auth-Token": `${apikey}`,
                         }
@@ -37,6 +41,8 @@ function Competition(props) {
 
             } catch (e) {
                 console.error(e);
+                setError(true);
+                toggleLoading(false);
             }
 
 
@@ -44,7 +50,8 @@ function Competition(props) {
 
         fetchData()
 
-    }, [props.competitionID, fromToDate]);
+    }, [props.competitionID, fromToDate, props.status])
+
 
     console.log("matchesDD", matchData);
 
@@ -68,14 +75,19 @@ function Competition(props) {
 
                     </article>
 
+                ) : matchData && !matchData.matches.length ?  (
 
-                ) : matchData && !matchData.matches.length ? (
+                         <></>
 
-                    <p>There are no matches for this date</p>
+        ) : error ? (
 
-                ) : (
-                    <>Loading</>
-                )}
+            <p>Er is iets misgegaan met het ophalen van de data.</p>
+
+        ) : loading && (
+
+            <p>Loading...</p>
+        )}
+
         </>
     )
 }

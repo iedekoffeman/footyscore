@@ -58,11 +58,11 @@ function ResultsPage() {
 
             <NavigationDateBar />
 
+
             {competitionData ? (
                 <>
                     {competitionData.map((competition) => {
-
-                        return <Competition key={competition.id} competitionID={competition.id}
+                        return <Competition key={competition.id} status={"FINISHED"} competitionID={competition.id}
                                             countryName={competition.area.name}/>
 
                     })}
