@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import {faSearch} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
 function Autocomplete(props) {
 
-    const suggestions = [];
-    const [activeSuggestions, setActiveSuggestions] = useState(0)
+    const suggestions = props.suggestions;
+    const [activeSuggestion, setActiveSuggestion] = useState(0)
     const [filteredSuggestions, setFilteredSuggestions] = useState([])
     const [showSuggestions, toggleShowSuggestions] = useState(false)
     const [userInput, setUserInput] = useState("")
@@ -12,21 +14,16 @@ function Autocomplete(props) {
 
     let suggestionListComponent = null;
 
-    console.log("array", suggestions)
-
     function handleOnChange(e) {
 
-        const suggestions = props.suggestions;
         const userInput = e.currentTarget.value;
-        console.log("userInput", userInput)
 
         const filteredSuggestionsT = suggestions.filter(
             suggestion =>
-                suggestion.toLowerCase().indexOf(userInput) > -1
-
+                suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
         )
 
-        setActiveSuggestions(0)
+        setActiveSuggestion(0)
         setFilteredSuggestions(filteredSuggestionsT)
         toggleShowSuggestions(true)
         setUserInput(e.currentTarget.value)
@@ -37,18 +34,46 @@ function Autocomplete(props) {
 
     function handleOnClick(e) {
 
-        setActiveSuggestions(0)
+        setActiveSuggestion(0)
         setFilteredSuggestions([])
         toggleShowSuggestions(false)
         setUserInput(e.currentTarget.innerText)
 
     }
 
+    function handleOnKeyDown(e) {
+
+
+        if (e.keyCode === 13) {
+
+            setActiveSuggestion(0)
+            toggleShowSuggestions(false)
+            setUserInput(filteredSuggestions[activeSuggestion])
+
+        } else if (e.keyCode === 38) {
+            if (activeSuggestion === 0) {
+                return;
+            }
+
+            setActiveSuggestion(activeSuggestion - 1)
+
+        }
+
+        // When user pressed the down arrow, increment index
+
+        else if (e.keyCode === 40) {
+
+            if (activeSuggestion - 1 === filteredSuggestions.length) {
+                return;
+            }
+            setActiveSuggestion(activeSuggestion + 1)
+        }
+    }
 
     return (
         <>
             {(() => {
-                if(showSuggestions && userInput) {
+                if (showSuggestions && userInput) {
 
                     filteredSuggestions.length ? (
 
@@ -58,7 +83,7 @@ function Autocomplete(props) {
                                     let className;
 
                                     // Flag the active suggestion with a class
-                                    if (index === activeSuggestions) {
+                                    if (index === activeSuggestion) {
                                         className = "suggestion-active";
                                     }
                                     return (
@@ -77,30 +102,34 @@ function Autocomplete(props) {
                             </div>
                         )
                     )
-            }
+                }
             })()}
 
+            <div className={"search-wrapper"}>
+                < input
+                    type="text"
+                    placeholder="Search country name..."
+                    onChange={(event) =>
+                        handleOnChange(event)
+                    }
+                    onKeyDown={(event) =>
+                        handleOnKeyDown(event)
+                    }
+                    value={userInput}
+                />
 
-        < input
-            type="text"
-            onChange={(event) =>
-                handleOnChange(event)
-            }
-            value={userInput}
-        />
+                <button
+                    onClick={handleOnClick}
+                >
+                    <FontAwesomeIcon icon={faSearch}/>
 
+                </button>
 
-            {suggestionListComponent}
+                {suggestionListComponent}
 
-
-        <button
-            onClick={handleOnClick}
-        >
-            Zoek
-        </button>
-
-            </>
-)
+            </div>
+        </>
+    )
 }
 
 export default Autocomplete;
