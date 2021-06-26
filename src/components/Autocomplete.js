@@ -14,24 +14,26 @@ function Autocomplete(props) {
 
     let suggestionListComponent = null;
 
+    //Will be fired when a user changes his search input in the inputbox
     function handleOnChange(e) {
 
         const userInput = e.currentTarget.value;
 
-        const filteredSuggestionsT = suggestions.filter(
-            suggestion =>
-                suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-        )
+        const filteredSuggestionsT = suggestions.filter(function (el) {
+
+                return el.country.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+        })
+
 
         setActiveSuggestion(0)
         setFilteredSuggestions(filteredSuggestionsT)
         toggleShowSuggestions(true)
         setUserInput(e.currentTarget.value)
 
-        console.log("filteredSuggestions", filteredSuggestionsT)
 
     }
 
+    //Will be fired when user clicks a suggested value
     function handleOnClick(e) {
 
         setActiveSuggestion(0)
@@ -41,6 +43,7 @@ function Autocomplete(props) {
 
     }
 
+    //Will be fired when a user goes down by the arrow key
     function handleOnKeyDown(e) {
 
 
@@ -70,6 +73,10 @@ function Autocomplete(props) {
         }
     }
 
+    function handleOnSubmit() {
+        console.log(userInput)
+    }
+
     return (
         <>
             {(() => {
@@ -87,8 +94,8 @@ function Autocomplete(props) {
                                         className = "suggestion-active";
                                     }
                                     return (
-                                        <li className={className} key={suggestion} onClick={handleOnClick}>
-                                            {suggestion}
+                                        <li className={className} key={suggestion.id} onClick={handleOnClick}>
+                                            {suggestion.country}
                                         </li>
                                     );
                                 })}
@@ -119,7 +126,7 @@ function Autocomplete(props) {
                 />
 
                 <button
-                    onClick={handleOnClick}
+                    onClick={handleOnSubmit}
                 >
                     <FontAwesomeIcon icon={faSearch}/>
 

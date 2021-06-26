@@ -121,8 +121,8 @@ function App() {
                         </li>
                     </ul>
                 </nav>
-                <a href="/" className="search"><FontAwesomeIcon icon={faSearch}/></a>
-                <a href="/"><FontAwesomeIcon icon={faUserCircle}/></a>
+                <NavLink to={"/search"} className={"search main-nav"} activeClassName={"main-nav-active"}><FontAwesomeIcon icon={faSearch}/></NavLink>
+                <NavLink to={"/account"} className={"main-nav"} activeClassName={"main-nav-active"}><FontAwesomeIcon icon={faUserCircle}/></NavLink>
             </header>
 
             <aside className="sidebar-left">Sidebar</aside>
