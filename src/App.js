@@ -13,6 +13,7 @@ import {
 import ResultsPage from './pages/Results';
 import FavoritesPage from './pages/Favorites';
 import LiveScoresPage from "./pages/Live-scores";
+import SearchPage from "./pages/Search";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faFutbol} from '@fortawesome/free-solid-svg-icons'
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
@@ -142,6 +143,9 @@ function App() {
                     </Route>
                     <Route path="/live-scores">
                         <LiveScoresPage competitions={competitionData} error={error} loading={loading}/>
+                    </Route>
+                    <Route exact path="/search">
+                        <SearchPage />
                     </Route>
                     <Route path="/">
                         <h1>404 page not found, sorry...</h1>

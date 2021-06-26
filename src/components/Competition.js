@@ -22,7 +22,7 @@ function Competition(props) {
 
         //console.log("isDate", isThisADate)
 
-        async function fetchData() {
+        async function fetchCompetitionMatches() {
 
             setError(false);
             toggleLoading(true);
@@ -48,9 +48,15 @@ function Competition(props) {
 
         }
 
-        fetchData()
+        
+
+        if(props.competitionID || fromToDate || props.status) {
+            fetchCompetitionMatches()
+        }
 
     }, [props.competitionID, fromToDate, props.status])
+
+
 
 
     console.log("matchesDD", matchData);
