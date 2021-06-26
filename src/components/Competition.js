@@ -48,7 +48,7 @@ function Competition(props) {
 
         }
 
-        
+
 
         if(props.competitionID || fromToDate || props.status) {
             fetchCompetitionMatches()

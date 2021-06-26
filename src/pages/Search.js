@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Autocomplete from "../components/Autocomplete";
+import Competition from "../components/Competition";
 
 
-function SearchPage() {
+function SearchPage(props) {
+    const competitionData = props.competitions;
+    const [userInput, setUserInput] = useState("")
+    const [competition, setCompetition] = useState()
+    const [inputSubmitted, toggleInputSubmitted] = useState(false)
 
     const suggestions =  [
         {
@@ -29,17 +34,57 @@ function SearchPage() {
             "id": 2003,
             "country": "Holland",
         },
+        {
+            "id": 2014,
+            "country": "Spain",
+        },
     ]
+    console.log("what is comp data", competitionData)
+    useEffect(() => {
+
+        if(inputSubmitted && competitionData) {
+            const userInputCompID = suggestions.find( ({ country }) => country === userInput );
+            console.log("test", userInputCompID.id)
+            //competitionData.find( ({id}) => competitionData.id === userInputCompID.id))
+            const comp = competitionData.find(({id}) => id === userInputCompID.id )
+            console.log("what is competition", comp)
+
+                setCompetition(comp)
+                toggleInputSubmitted(false)
+
+
+
+        }
+
+
+    }, [inputSubmitted, competitionData]);
+
 
     return (
 
         <>
             <h2>Search</h2>
-            <Autocomplete suggestions={suggestions} />
-            <p className={"search-p"}>The search query applies to matches played in the 2021 season</p>
-            <p className={"search-p"}>For now, available options are England, France, Italy, Holland, Euro 2020 and Germany</p>
+            <Autocomplete suggestions={suggestions} userInput={userInput} setUserInput={setUserInput} toggleSubmitted={toggleInputSubmitted} />
+            <p className={"search-p"}>The search query applies to matches played at this moment (live)</p>
+            <p className={"search-p"}>For now, available options are Euro 2020, England, France, Italy, Holland, spain and Germany</p>
 
+            { competition ? (
+                <>
 
+                    <Competition key={competition.id} status={"LIVE"} competitionID={competition.id}
+                                            countryName={competition.area.name}/>
+
+                </>
+
+            ) : props.error ? (
+
+                <p>Er is iets misgegaan met het ophalen van de data.</p>
+
+            ) : props.loading && (
+
+                <p>Loading....</p>
+
+            )}
         </>
     )
 

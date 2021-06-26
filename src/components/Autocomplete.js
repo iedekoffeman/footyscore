@@ -5,11 +5,11 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function Autocomplete(props) {
 
-    const suggestions = props.suggestions;
+    const {suggestions, userInput, setUserInput, toggleSubmitted} = props;
     const [activeSuggestion, setActiveSuggestion] = useState(0)
     const [filteredSuggestions, setFilteredSuggestions] = useState([])
     const [showSuggestions, toggleShowSuggestions] = useState(false)
-    const [userInput, setUserInput] = useState("")
+
 
 
     let suggestionListComponent = null;
@@ -75,6 +75,7 @@ function Autocomplete(props) {
 
     function handleOnSubmit() {
         console.log(userInput)
+        toggleSubmitted(true)
     }
 
     return (

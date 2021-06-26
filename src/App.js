@@ -145,7 +145,7 @@ function App() {
                         <LiveScoresPage competitions={competitionData} error={error} loading={loading}/>
                     </Route>
                     <Route exact path="/search">
-                        <SearchPage />
+                        <SearchPage competitions={competitionData} />
                     </Route>
                     <Route path="/">
                         <h1>404 page not found, sorry...</h1>
