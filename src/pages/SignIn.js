@@ -1,12 +1,33 @@
 import React from 'react';
 import  {useForm}  from 'react-hook-form'
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function SignIn() {
     const { handleSubmit, register } = useForm();
 
-    function onSubmit(data) {
+    async function onSubmit(data) {
         console.log(data);
+        try {
+
+            console.log(data);
+            const response = await axios.post("https://polar-lake-14365.herokuapp.com/api/auth/signin",
+
+                {
+                    username: data.username,
+                    password: data.password,
+                }, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    }
+                });
+            console.log(response.data.accessToken);
+
+        } catch(error) {
+
+            console.log("Error?", error);
+        }
+
     }
 
     return (
