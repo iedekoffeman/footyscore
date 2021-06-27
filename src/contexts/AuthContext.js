@@ -7,6 +7,7 @@ export const authContext = createContext({});
 
 function AuthContextProvider(props) {
 
+    const history = useHistory();
     const [authState, setAuthState] = useState({user: null, status: "pending"});
 
     useEffect(() => {
@@ -27,6 +28,7 @@ function AuthContextProvider(props) {
             });
             console.log(response);
             setAuthState({user: response.data, status: "done"});
+            history.push('/myprofile');
 
         } catch (error) {
             console.log("ERROR?", error);
@@ -44,7 +46,7 @@ function AuthContextProvider(props) {
         console.log(dataFromToken.sub);
         const userData =  getUserData();
         console.log("Do we get data", userData);
-        userData && history.push('/signin')
+
     }
 
     function logout() {
