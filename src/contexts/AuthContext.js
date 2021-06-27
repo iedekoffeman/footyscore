@@ -10,9 +10,8 @@ function AuthContextProvider(props) {
             setAuthState({user: null, status: "done"});
         }, [])
 
-    function login () {
-
-        //setAuthState({user: "iede"});
+    function login (token) {
+        console.log("Do we have token", token);
     }
 
     function logout() {

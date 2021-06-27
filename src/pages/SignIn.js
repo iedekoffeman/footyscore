@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import  {useForm}  from 'react-hook-form'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {authContext} from '../contexts/AuthContext'
+
 
 function SignIn() {
     const { handleSubmit, register } = useForm();
+    const {login} = useContext(authContext);
 
     async function onSubmit(data) {
         console.log(data);
@@ -22,6 +25,7 @@ function SignIn() {
                     }
                 });
             console.log(response.data.accessToken);
+            login(response.data.accessToken);
 
         } catch(error) {
 
