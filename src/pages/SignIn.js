@@ -42,7 +42,7 @@ function SignIn() {
                 <label htmlFor="username-field">
                     Username:
                     <input
-                        type="email"
+                        type="text"
                         id="username-field"
                         name="username"
                         {...register("username")}

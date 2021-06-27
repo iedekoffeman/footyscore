@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from 'react';
 
-const authContext = createContext({});
+export const authContext = createContext({});
 
 function AuthContextProvider(props) {
 
@@ -12,6 +12,7 @@ function AuthContextProvider(props) {
 
     function login (token) {
         console.log("Do we have token", token);
+        localStorage.setItem('token', token);
     }
 
     function logout() {
