@@ -1,11 +1,14 @@
-import { useState, createContext } from 'react';
+import { useState, useEffect, createContext } from 'react';
 
 const authContext = createContext({});
 
 function AuthContextProvider(props) {
 
-    const [authstate, setAuthState] = useState({user: null, status: "pending"});
+    const [authState, setAuthState] = useState({user: null, status: "pending"});
 
+    useEffect(() => {
+            setAuthState({user: null, status: "done"});
+        }, [])
 
     function login () {
 
@@ -15,16 +18,15 @@ function AuthContextProvider(props) {
     function logout() {
 
     }
-
-    const data = {}
+    const data = {authState: authState, login: login, logout: logout};
 
     return (
 
         <authContext.Provider value={data}>
             {/* Rest of app*/}
-            {props.children}
+            {authState === "pending" & <h1>Fetching data, hold on</h1>}
+            { authState.status === "done" && props.children}
         </authContext.Provider>
-
     );
 }
 

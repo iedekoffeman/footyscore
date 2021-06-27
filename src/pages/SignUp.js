@@ -15,7 +15,7 @@ function SignUp() {
 
         try {
             setLoading(true);
-            const response = await axios.post("https://polar-lake-14365.herokuapp.com/auth/signup",
+            const response = await axios.post("https://polar-lake-14365.herokuapp.com/api/auth/signup",
 
                 {
                     username: data.username,
