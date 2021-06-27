@@ -14,6 +14,9 @@ import ResultsPage from './pages/Results';
 import FavoritesPage from './pages/Favorites';
 import LiveScoresPage from "./pages/Live-scores";
 import SearchPage from "./pages/Search";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import MyProfile from "./pages/MyProfile";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faFutbol} from '@fortawesome/free-solid-svg-icons'
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
@@ -27,6 +30,7 @@ function App() {
     const {pathname} = useLocation();
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState();
+    const [showAccountMenu, toggleShowAccountMenu] = useState("hide");
 
     const [competitionData, setCompetitionData] = useState(null);
 
@@ -122,7 +126,12 @@ function App() {
                     </ul>
                 </nav>
                 <NavLink to={"/search"} className={"search main-nav"} activeClassName={"main-nav-active"}><FontAwesomeIcon icon={faSearch}/></NavLink>
-                <NavLink to={"/account"} className={"main-nav"} activeClassName={"main-nav-active"}><FontAwesomeIcon icon={faUserCircle}/></NavLink>
+                <button
+                    onClick={() => toggleShowAccountMenu("")}
+                >
+                    <FontAwesomeIcon icon={faUserCircle}/>
+                </button>
+
             </header>
 
             <aside className="sidebar-left">Sidebar</aside>
@@ -144,8 +153,17 @@ function App() {
                     <Route path="/live-scores">
                         <LiveScoresPage competitions={competitionData} error={error} loading={loading}/>
                     </Route>
-                    <Route exact path="/search">
+                    <Route path="/search">
                         <SearchPage competitions={competitionData} />
+                    </Route>
+                    <Route path="/signin">
+                        <SignIn />
+                    </Route>
+                    <Route path="/signup">
+                        <SignUp />
+                    </Route>
+                    <Route path="/myprofile">
+                        <MyProfile />
                     </Route>
                     <Route path="/">
                         <h1>404 page not found, sorry...</h1>
@@ -154,6 +172,37 @@ function App() {
             </main>
             <aside className="sidebar-right">Sidebar</aside>
             <footer className="footer">Footer</footer>
+            <div className={`account-menu ${showAccountMenu}`} >
+                    <ul>
+                        <li key={"sign-in"}>
+                            <NavLink
+                                to={`/sign-in`}
+                                className={"account-nav"}
+                            >
+                                sign-in
+
+                            </NavLink>
+                        </li>
+                        <li key={"my-profile"}>
+                            <NavLink
+                                to={`/my-profile`}
+                                className={"account-nav"}
+                            >
+                                My Profile
+
+                            </NavLink>
+                        </li>
+                        <li key={"sign-up"}>
+                            <NavLink
+                                to={`/sign-up`}
+                                className={"account-nav"}
+                            >
+                                sign-up
+
+                            </NavLink>
+                        </li>
+                    </ul>
+            </div>
         </div>
 
     );
