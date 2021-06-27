@@ -24,7 +24,7 @@ function AuthContextProvider(props) {
 
         <authContext.Provider value={data}>
             {/* Rest of app*/}
-            {authState === "pending" & <h1>Fetching data, hold on</h1>}
+            {authState.status === "pending" & <h1>Fetching data, hold on</h1>}
             { authState.status === "done" && props.children}
         </authContext.Provider>
     );
