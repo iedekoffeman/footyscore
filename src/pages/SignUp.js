@@ -2,15 +2,20 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
+import {useHistory} from 'react-router-dom'
 
 function SignUp() {
+    const history = useHistory();
     const {handleSubmit, register} = useForm();
-    const [succesMessage, setSuccesMessage] = useState("");
+    const [succes, setSucces] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
     async function onSubmit(data) {
         console.log("Data van gebruiker", data);
 
         try {
+            setLoading(true);
             const response = await axios.post("https://polar-lake-14365.herokuapp.com/auth/signup",
 
                 {
@@ -24,19 +29,23 @@ function SignUp() {
                     }
                 });
             console.log(response);
-            setSuccesMessage("Your account is registrated successfully");
+            setSucces(true);
+            setTimeout(() => history.push('/signin'), 2000);
         } catch (error) {
             console.log("ERROR?", error);
         }
+
+        setLoading(false);
 
     }
 
     return (
         <>
             <h2>Registreren</h2>
-            <p>{succesMessage}</p>
+            <p>{succes && "Your account is registrated successfully"}</p>
+            <p>{loading && "Loading.. one moment please"}</p>
 
-            {!succesMessage &&
+            {!succes &&
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <label htmlFor="email-field">
@@ -71,6 +80,7 @@ function SignUp() {
                     <button
                         type="submit"
                         className="form-button"
+                        disabled={loading}
                     >
                         Maak account aan
                     </button>
