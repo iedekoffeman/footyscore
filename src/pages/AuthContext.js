@@ -1,8 +1,20 @@
-import { createContext } from 'react';
+import { useState, createContext } from 'react';
 
 const authContext = createContext({});
 
 function AuthContextProvider(props) {
+
+    const [authstate, setAuthState] = useState({user: null, status: "pending"});
+
+
+    function login () {
+
+        //setAuthState({user: "iede"});
+    }
+
+    function logout() {
+
+    }
 
     const data = {}
 

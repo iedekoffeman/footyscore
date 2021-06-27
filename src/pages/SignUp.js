@@ -9,7 +9,6 @@ function SignUp() {
     const {handleSubmit, register} = useForm();
     const [succes, setSucces] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
 
     async function onSubmit(data) {
         console.log("Data van gebruiker", data);
@@ -22,7 +21,7 @@ function SignUp() {
                     username: data.username,
                     email: data.email,
                     password: data.password,
-                    user: ["user"]
+                    role: ["user"]
                 }, {
                     headers: {
                         "Content-Type": "application/json",
