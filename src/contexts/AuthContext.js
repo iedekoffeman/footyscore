@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext } from 'react';
+import jwt_decode from 'jwt-decode';
 
 export const authContext = createContext({});
 
@@ -13,6 +14,8 @@ function AuthContextProvider(props) {
     function login (token) {
         console.log("Do we have token", token);
         localStorage.setItem('token', token);
+        const dataFromToken = jwt_decode(token);
+        console.log(dataFromToken.sub);
     }
 
     function logout() {
