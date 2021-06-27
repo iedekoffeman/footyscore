@@ -1,5 +1,7 @@
 import { useState, useEffect, createContext } from 'react';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
+import {useHistory} from 'react-router-dom'
 
 export const authContext = createContext({});
 
@@ -10,12 +12,39 @@ function AuthContextProvider(props) {
     useEffect(() => {
             setAuthState({user: null, status: "done"});
         }, [])
+    async function getUserData() {
+
+        setAuthState({user: null, status: "pending"});
+        console.log("Data van gebruiker", data);
+
+        const token = localStorage.getItem('token');
+
+        try {
+            const response = await axios.get("https://polar-lake-14365.herokuapp.com/api/user", {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            console.log(response);
+            setAuthState({user: response.data, status: "done"});
+
+        } catch (error) {
+            console.log("ERROR?", error);
+        }
+
+
+
+    }
+
 
     function login (token) {
         console.log("Do we have token", token);
         localStorage.setItem('token', token);
         const dataFromToken = jwt_decode(token);
         console.log(dataFromToken.sub);
+        const userData =  getUserData();
+        console.log("Do we get data", userData);
+        userData && history.push('/signin')
     }
 
     function logout() {
