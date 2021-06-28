@@ -3,8 +3,8 @@ import { authContext} from "../contexts/AuthContext";
 
 function MyProfile() {
 
-    const authInfo = useContext(authContext);
-    console.log("UserInfo", authInfo);
+    const {authState: user} = useContext(authContext);
+    console.log("UserInfo", user);
 
     return (
         <>
@@ -12,12 +12,12 @@ function MyProfile() {
 
             <p>
                 <strong>username:</strong>{" "}
-                {authInfo.authState.user && authInfo.authState.user.username}
+                {user && user.username}
 
             </p>
             <p>
                 <strong>E-mail:</strong>{" "}
-                {authInfo.authState.user && authInfo.authState.user.email}
+                {user && user.email}
 
             </p>
 
