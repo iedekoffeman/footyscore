@@ -14,7 +14,7 @@ function AuthContextProvider(props) {
             setAuthState({user: null, status: "done"});
         }, [])
 
-    async function getUserData() {
+    async function getUserData(token) {
 
         setAuthState({user: null, status: "pending"});
         console.log("Data van gebruiker", data);
