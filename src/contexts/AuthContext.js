@@ -19,7 +19,7 @@ function AuthContextProvider(props) {
             login(token);
         } else {
             setAuthState({user: null, status: "done"});
-            history.push("/signin");
+            history.push("/");
         }
 
         }, []);
@@ -62,7 +62,7 @@ function AuthContextProvider(props) {
 
     function logout() {
 
-        localStorage.removeItem("token");
+        localStorage.removeItem('token');
         setAuthState({user: null, status: "done"});
 
     }
