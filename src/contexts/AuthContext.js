@@ -64,7 +64,6 @@ function AuthContextProvider(props) {
 
         localStorage.removeItem("token");
         setAuthState({user: null, status: "done"});
-        history.push("/");
 
     }
     const data = {authState: authState, login: login, logout: logout};

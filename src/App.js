@@ -32,7 +32,11 @@ function App() {
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState();
     const [showAccountMenu, toggleShowAccountMenu] = useState("hide");
-    const {logout} = useContext(authContext);
+    const {
+        logout,
+        authState: {user},
+
+    } = useContext(authContext);
 
     const [competitionData, setCompetitionData] = useState(null);
 
@@ -176,18 +180,33 @@ function App() {
             <footer className="footer">Footer</footer>
             <div className={`account-menu ${showAccountMenu}`} >
                     <ul>
-                        <li key={"sign-in"}>
-                            <NavLink
-                                to={`/sign-in`}
-                                className={"account-nav"}
-                            >
-                                sign-in
+                        {!user ? (
+                            <>
+                            <li key={"sign-in"}>
+                                <NavLink
+                                    to={`/signin`}
+                                    className={"account-nav"}
+                                >
+                                    sign-in
 
-                            </NavLink>
-                        </li>
-                        <li key={"sign-in"}>
+                                </NavLink>
+                            </li>
+
+                            <li key={"sign-up"}>
+                                <NavLink
+                                    to={`/signup`}
+                                    className={"account-nav"}
+                                >
+                                    sign-up
+
+                                </NavLink>
+                            </li>
+                            </>
+                        ) : (
+                            <>
+                        <li key={"sign-out"}>
                             <NavLink
-                                to={`/sign-in`}
+                                to={`/`}
                                 className={"account-nav"}
                                 onClick={logout}
                             >
@@ -195,24 +214,18 @@ function App() {
 
                             </NavLink>
                         </li>
+
                         <li key={"my-profile"}>
                             <NavLink
-                                to={`/my-profile`}
+                                to={`/myprofile`}
                                 className={"account-nav"}
                             >
                                 My Profile
 
                             </NavLink>
                         </li>
-                        <li key={"sign-up"}>
-                            <NavLink
-                                to={`/sign-up`}
-                                className={"account-nav"}
-                            >
-                                sign-up
-
-                            </NavLink>
-                        </li>
+                        </>
+                        )}
                     </ul>
             </div>
         </div>
