@@ -11,13 +11,25 @@ function AuthContextProvider(props) {
     const [authState, setAuthState] = useState({user: null, status: "pending"});
 
     useEffect(() => {
-            setAuthState({user: null, status: "done"});
-        }, [])
 
-    async function getUserData(token) {
+        const token = localStorage.getItem("token");
+        console.log("token", token);
+        if (token) {
+            console.log("tok", token);
+            login(token);
+        } else {
+            setAuthState({user: null, status: "done"});
+            history.push("/signin");
+        }
+
+        }, []);
+
+    async function getUserData() {
 
         setAuthState({user: null, status: "pending"});
         console.log("Data van gebruiker", data);
+
+        const token = localStorage.getItem('token');
 
         try {
             const response = await axios.get("https://polar-lake-14365.herokuapp.com/api/user", {
@@ -43,12 +55,16 @@ function AuthContextProvider(props) {
         localStorage.setItem('token', token);
         const dataFromToken = jwt_decode(token);
         console.log(dataFromToken.sub);
-        const userData =  getUserData(token);
+        const userData =  getUserData();
         console.log("Do we get data", userData);
 
     }
 
     function logout() {
+
+        localStorage.removeItem("token");
+        setAuthState({user: null, status: "done"});
+        history.push("/");
 
     }
     const data = {authState: authState, login: login, logout: logout};

@@ -22,6 +22,7 @@ import {faFutbol} from '@fortawesome/free-solid-svg-icons'
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
+import {authContext} from "./contexts/AuthContext";
 
 const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 
@@ -31,6 +32,7 @@ function App() {
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState();
     const [showAccountMenu, toggleShowAccountMenu] = useState("hide");
+    const {logout} = useContext(authContext);
 
     const [competitionData, setCompetitionData] = useState(null);
 
@@ -180,6 +182,16 @@ function App() {
                                 className={"account-nav"}
                             >
                                 sign-in
+
+                            </NavLink>
+                        </li>
+                        <li key={"sign-in"}>
+                            <NavLink
+                                to={`/sign-in`}
+                                className={"account-nav"}
+                                onClick={logout}
+                            >
+                                sign-out
 
                             </NavLink>
                         </li>
