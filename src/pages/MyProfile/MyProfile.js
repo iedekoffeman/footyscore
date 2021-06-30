@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { authContext} from "../contexts/AuthContext";
+import { authContext} from "../../contexts/AuthContext";
 
 function MyProfile() {
 

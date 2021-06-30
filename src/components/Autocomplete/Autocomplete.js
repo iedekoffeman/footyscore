@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import styles from './Autocomplete.module.css';
 
 
 function Autocomplete(props) {
@@ -86,13 +87,13 @@ function Autocomplete(props) {
                     filteredSuggestions.length ? (
 
                         suggestionListComponent = (
-                            <ul className="suggestions">
+                            <ul className={styles.suggestions}>
                                 {filteredSuggestions.map((suggestion, index) => {
                                     let className;
 
                                     // Flag the active suggestion with a class
                                     if (index === activeSuggestion) {
-                                        className = "suggestion-active";
+                                        className = styles['suggestion-active']
                                     }
                                     return (
                                         <li className={className} key={suggestion.id} onClick={handleOnClick}>
@@ -105,7 +106,7 @@ function Autocomplete(props) {
                     ) : (
 
                         suggestionListComponent = (
-                            <div className="no-suggestions">
+                            <div className={styles['no-suggestions']}>
                                 <em>No suggestions available.</em>
                             </div>
                         )
@@ -113,7 +114,7 @@ function Autocomplete(props) {
                 }
             })()}
 
-            <div className={"search-wrapper"}>
+            <div className={styles['search-wrapper']}>
                 < input
                     type="text"
                     placeholder="Search country name..."

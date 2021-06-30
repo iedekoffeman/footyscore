@@ -10,13 +10,14 @@ import {
 import {
     format,
 } from 'date-fns'
-import ResultsPage from './pages/Results';
-import FavoritesPage from './pages/Favorites';
-import LiveScoresPage from "./pages/Live-scores";
-import SearchPage from "./pages/Search";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import MyProfile from "./pages/MyProfile";
+import ResultsPage from './pages/Results/Results';
+import FavoritesPage from './pages/Favorites/Favorites';
+import LiveScoresPage from "./pages/LiveScores/Live-scores";
+import SearchPage from "./pages/Search/Search";
+import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SignUp/SignUp";
+import MyProfile from "./pages/MyProfile/MyProfile";
+import AccountMenu from "./components/AccountMenu/AccountMenu";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faFutbol} from '@fortawesome/free-solid-svg-icons'
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
@@ -32,11 +33,7 @@ function App() {
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState();
     const [showAccountMenu, toggleShowAccountMenu] = useState("hide");
-    const {
-        logout,
-        authState: {user},
 
-    } = useContext(authContext);
 
     const [competitionData, setCompetitionData] = useState(null);
 
@@ -178,56 +175,7 @@ function App() {
             </main>
             <aside className="sidebar-right">Sidebar</aside>
             <footer className="footer">Footer</footer>
-            <div className={`account-menu ${showAccountMenu}`} >
-                    <ul>
-                        {!user ? (
-                            <>
-                            <li key={"sign-in"}>
-                                <NavLink
-                                    to={`/signin`}
-                                    className={"account-nav"}
-                                >
-                                    sign-in
-
-                                </NavLink>
-                            </li>
-
-                            <li key={"sign-up"}>
-                                <NavLink
-                                    to={`/signup`}
-                                    className={"account-nav"}
-                                >
-                                    sign-up
-
-                                </NavLink>
-                            </li>
-                            </>
-                        ) : (
-                            <>
-                        <li key={"sign-out"}>
-                            <NavLink
-                                to={`/`}
-                                className={"account-nav"}
-                                onClick={logout}
-                            >
-                                sign-out
-
-                            </NavLink>
-                        </li>
-
-                        <li key={"my-profile"}>
-                            <NavLink
-                                to={`/myprofile`}
-                                className={"account-nav"}
-                            >
-                                My Profile
-
-                            </NavLink>
-                        </li>
-                        </>
-                        )}
-                    </ul>
-            </div>
+           <AccountMenu show={showAccountMenu} />
         </div>
 
     );

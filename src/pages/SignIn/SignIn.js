@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import  {useForm}  from 'react-hook-form'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {authContext} from '../contexts/AuthContext'
+import {authContext} from '../../contexts/AuthContext'
 
 
 function SignIn() {

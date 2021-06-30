@@ -1,0 +1,32 @@
+.match {
+    display: flex;
+    width: 95%;
+    font-size: 20px;
+    margin: 15px 0 0 0;
+    font-weight: 400;
+    border: 1px solid lightgray;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 0 50px 10px;
+}
+
+.score {
+    flex: 3;
+}
+
+.match-info-options {
+    flex: 1;
+    color: var(--secondary-text-color);
+}
+
+.home-team, .home-team-score {
+    margin-bottom: 10px;
+}
+
+.away-team, .away-team-score {
+    margin: 0;
+}

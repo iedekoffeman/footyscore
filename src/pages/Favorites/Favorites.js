@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationDateBar from "../components/NavigationDateBar";
+import NavigationDateBar from "../../components/NavigationDateBar/NavigationDateBar";
 
 
 function FavoritesPage() {

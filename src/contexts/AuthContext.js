@@ -22,7 +22,7 @@ function AuthContextProvider(props) {
             history.push("/");
         }
 
-        }, []);
+        },  []);
 
     async function getUserData() {
 

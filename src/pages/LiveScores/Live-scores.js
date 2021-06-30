@@ -1,23 +1,18 @@
 import React from 'react';
-import Competition from '../components/Competition'
-import NavigationDateBar from "../components/NavigationDateBar";
+import Competition from "../../components/Competition/Competition";
 
-
-function ResultsPage(props) {
+function LiveScoresPage(props) {
 
 
     return (
 
         <>
-            <h2>Results</h2>
-
-            <NavigationDateBar/>
-
+            <h2>Live scores</h2>
 
             {props.competitions ? (
                 <>
                     {props.competitions.map((competition) => {
-                        return <Competition key={competition.id} status={"FINISHED"} competitionID={competition.id}
+                        return <Competition key={competition.id} status={"LIVE"} competitionID={competition.id}
                                             countryName={competition.area.name}/>
 
                     })}
@@ -34,7 +29,6 @@ function ResultsPage(props) {
             )}
         </>
     )
-
 }
 
-export default ResultsPage;
+export default LiveScoresPage;

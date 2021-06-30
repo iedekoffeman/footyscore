@@ -14,6 +14,7 @@ import {
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import styles from './NavigationDateBar.module.css';
 
 
 function NavigationDateBar() {
@@ -69,7 +70,7 @@ function NavigationDateBar() {
 
     return (
         <>
-            <ul className={"nav-date"}>
+            <ul className={styles['nav-date']}>
 
                 <li><FontAwesomeIcon
                     className={"chevronIcon"}
@@ -89,8 +90,8 @@ function NavigationDateBar() {
                     return <li key={day}>
                                 <NavLink
                                     to={`/results/${dayFormatted}`}
-                                    className={"date-bar"}
-                                    activeClassName={"date-bar-active"}
+                                    className={styles['date-bar']}
+                                    activeClassName={styles['date-bar-active']}
                                 >
                                     {format(day, `MMM dd`)}
                                 </NavLink>
@@ -102,7 +103,7 @@ function NavigationDateBar() {
                 )}
 
                 <li><FontAwesomeIcon
-                    className={"chevronIcon"}
+                    className={styles.chevronIcon}
                     icon={faChevronRight}
                     disabled={disabledChevronRight}
                     onClick={() =>

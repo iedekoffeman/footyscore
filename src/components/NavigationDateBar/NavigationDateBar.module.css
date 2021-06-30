@@ -1,0 +1,56 @@
+ul.nav-date {
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    padding: 0;
+    border-top: 1px solid var(--secondary-text-color);
+    border-bottom: 1px solid var(--secondary-text-color);
+}
+
+ul.nav-date li  {
+    font-size: 1em;
+    text-align: center;
+    width: 50px;
+    padding: 5px 0;
+}
+.date-bar {
+    color: black;
+    text-decoration: none;
+}
+
+.date-bar-active {
+    color: var(--secondary-text-color);
+}
+
+.date-bar:hover {
+    color: var(--secondary-text-color);
+}
+
+.chevronIcon {
+    font-size: 2em;
+    cursor: pointer;
+}
+.chevronIcon:hover {
+    color: var(--secondary-text-color);
+}
+.chevronIcon:active {
+    color: var(--secondary-text-color);
+}
+.chevronIcon[disabled] {
+
+    pointer-events: none;
+    opacity: 0.2;
+}
+{
+    pointer-events: none;
+    opacity: 0.7;
+}
+@media only screen and (min-width: 1200px) {
+
+    ul.nav-date li {
+        font-size: 1.5em;
+
+    }
+}

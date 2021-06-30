@@ -4,7 +4,8 @@ import {
     format,
 } from 'date-fns'
 import axios from "axios";
-import Match from '../components/Match'
+import Match from '../Match/Match'
+import styles from './Competition.module.css';
 
 const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 
@@ -51,7 +52,7 @@ function Competition(props) {
 
 
         if(props.competitionID || fromToDate || props.status) {
-            fetchCompetitionMatches()
+             fetchCompetitionMatches()
         }
 
     }, [props.competitionID, fromToDate, props.status])
@@ -66,9 +67,9 @@ function Competition(props) {
             {
                 matchData && matchData.matches.length ? (
 
-                    <article className="competition-content">
+                    <article className={styles['competition-content']}>
 
-                        <p className="country">{props.countryName}</p>
+                        <p className={styles.country}>{props.countryName}</p>
 
                         {matchData.matches.map((match) => {
                                 console.log('Match', match)
