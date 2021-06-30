@@ -5,18 +5,19 @@ import styles from './NavigationMenu.module.css';
 
 function NavigationMenu(props) {
 
-
+    console.log(props.pathname);
 
     return (
 
         <nav>
             <ul>
-                {/*Dit wordt later vervangen door link to*/}
+
 
                 <li key={"results"}>
                     <NavLink
                         to={`/results/${format(new Date(), 'yyyy-MM-dd')}`}
                         className={styles['main-nav']}
+                        //class .active for isActive can be found in app.css
                         isActive={() => ['results'].includes(props.pathname.split('/')[1])}
                     >
                         Results
