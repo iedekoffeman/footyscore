@@ -52,7 +52,7 @@ function AccountMenu(props) {
                         <>
                             <li key={"sign-out"}>
                                 <NavLink
-                                    to={`/results/${format(new Date(), 'yyyy-MM-dd')}`}
+                                    to={'/signout'}
                                      className={styles['account-nav']}
                                     activeClassName={styles['account-nav-active']}
                                      onClick={logout}

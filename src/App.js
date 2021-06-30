@@ -154,6 +154,13 @@ function App() {
                     <Route path="/myprofile">
                         <MyProfile />
                     </Route>
+                    <Route path="/signout">
+                        <Redirect
+                            to={{
+                                pathname: `/results/${format(new Date(), 'yyyy-MM-dd')}`,
+                            }}
+                        />
+                    </Route>
                     <Route path="/">
                         <h1>404 page not found, sorry...</h1>
                     </Route>
