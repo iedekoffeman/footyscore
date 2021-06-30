@@ -73,7 +73,7 @@ function NavigationDateBar() {
             <ul className={styles['nav-date']}>
 
                 <li><FontAwesomeIcon
-                    className={"chevronIcon"}
+                    className={styles.chevronIcon}
                     icon={faChevronLeft}
                     disabled={disabledChevronLeft}
                     onClick={() =>

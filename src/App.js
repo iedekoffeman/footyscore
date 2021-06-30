@@ -1,11 +1,11 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {
     Switch,
     Route,
-    NavLink,
     Redirect,
     useLocation,
+    useHistory
 } from 'react-router-dom';
 import {
     format,
@@ -23,7 +23,7 @@ import {faFutbol} from '@fortawesome/free-solid-svg-icons'
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
-import {authContext} from "./contexts/AuthContext";
+import NavigationMenu from "./components/NavigationMenu/NavigationMenu";
 
 const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 
@@ -33,6 +33,16 @@ function App() {
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState();
     const [showAccountMenu, toggleShowAccountMenu] = useState("hide");
+    const history = useHistory();
+
+    function showActionMenu() {
+        toggleShowAccountMenu(' ');
+    }
+    function disableActionMenu() {
+        toggleShowAccountMenu('hide');
+    }
+
+
 
 
     const [competitionData, setCompetitionData] = useState(null);
@@ -91,49 +101,25 @@ function App() {
         <div className="flexbox-wrapper">
             <header className="header">
                 <span><FontAwesomeIcon icon={faFutbol} className="header-football"/><h1>footyScore</h1></span>
-                <nav>
-                    <ul>
-                        {/*Dit wordt later vervangen door link to*/}
 
-                        <li key={"results"}>
-                            <NavLink
-                                to={`/results/${format(new Date(), 'yyyy-MM-dd')}`}
-                                className={"main-nav"}
-                                isActive={() => ['results'].includes(pathname.split('/')[1])}
-                            >
-                                Results
+                <NavigationMenu pathname={pathname} />
 
-                            </NavLink>
-                        </li>
-                        <li key={"favorites"}>
-                            <NavLink
-                                to={"/favorites"}
-                                className={"main-nav"}
-                                activeClassName={"main-nav-active"}
-                            >
-                                Favorites
-
-                            </NavLink>
-                        </li>
-                        <li key={"live-scores"}>
-                            <NavLink
-                                to={"/live-scores"}
-                                className={"main-nav"}
-                                activeClassName={"main-nav-active"}
-                            >
-
-                                Live scores
-
-                            </NavLink>
-                        </li>
-                    </ul>
-                </nav>
-                <NavLink to={"/search"} className={"search main-nav"} activeClassName={"main-nav-active"}><FontAwesomeIcon icon={faSearch}/></NavLink>
-                <button
-                    onClick={() => toggleShowAccountMenu("")}
-                >
-                    <FontAwesomeIcon icon={faUserCircle}/>
-                </button>
+              <div className={'menu-buttons'}>
+                    <button
+                        className={'click'}
+                        onClick={() => history.push('/search')}
+                    >
+                        <FontAwesomeIcon icon={faSearch}/>
+                    </button>
+                    <button
+                        className={'click account'}
+                        onMouseEnter={showActionMenu}
+                        onMouseLeave={disableActionMenu}
+                    >
+                        <FontAwesomeIcon icon={faUserCircle}/>
+                        <AccountMenu show={showAccountMenu} />
+                    </button>
+              </div>
 
             </header>
 
@@ -175,7 +161,6 @@ function App() {
             </main>
             <aside className="sidebar-right">Sidebar</aside>
             <footer className="footer">Footer</footer>
-           <AccountMenu show={showAccountMenu} />
         </div>
 
     );

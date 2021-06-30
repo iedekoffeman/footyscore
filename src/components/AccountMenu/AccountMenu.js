@@ -1,5 +1,11 @@
 import {useContext} from 'react'
+import {format} from "date-fns";
 import styles from './AccountMenu.module.css';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faSignInAlt} from '@fortawesome/free-solid-svg-icons'
+import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+import {faIdCardAlt} from '@fortawesome/free-solid-svg-icons'
+import {faUserPlus} from '@fortawesome/free-solid-svg-icons'
 import {NavLink} from "react-router-dom";
 import {authContext} from "../../contexts/AuthContext";
 
@@ -12,7 +18,7 @@ function AccountMenu(props) {
     } = useContext(authContext);
 
     return (
-            <div className={`${styles['account-menu']} ${props.show}`} >
+            <div className={`${styles['account-menu']} ${styles[props.show]}`} >
                 <ul>
                     {!user ? (
                         <>
@@ -20,7 +26,10 @@ function AccountMenu(props) {
                                 <NavLink
                                     to={`/signin`}
                                     className={styles['account-nav']}
+                                    activeClassName={styles['account-nav-active']}
                                 >
+                                    <FontAwesomeIcon icon={faSignInAlt} className={styles['account-icon']} />
+
                                     sign-in
 
                                 </NavLink>
@@ -30,7 +39,10 @@ function AccountMenu(props) {
                                 <NavLink
                                     to={`/signup`}
                                     className={styles['account-nav']}
+                                    activeClassName={styles['account-nav-active']}
                                 >
+                                    <FontAwesomeIcon icon={faUserPlus} className={styles['account-icon']} />
+
                                     sign-up
 
                                 </NavLink>
@@ -40,10 +52,13 @@ function AccountMenu(props) {
                         <>
                             <li key={"sign-out"}>
                                 <NavLink
-                                    to={`/`}
+                                    to={`/results/${format(new Date(), 'yyyy-MM-dd')}`}
                                      className={styles['account-nav']}
-                                    onClick={logout}
+                                    activeClassName={styles['account-nav-active']}
+                                     onClick={logout}
                                 >
+                                    <FontAwesomeIcon icon={faSignOutAlt} className={styles['account-icon']} />
+
                                     sign-out
 
                                 </NavLink>
@@ -53,7 +68,11 @@ function AccountMenu(props) {
                                 <NavLink
                                     to={`/myprofile`}
                                      className={styles['account-nav']}
+                                    activeClassName={styles['account-nav-active']}
                                 >
+
+                                    <FontAwesomeIcon icon={faIdCardAlt } className={styles['account-icon']} />
+
                                     My Profile
 
                                 </NavLink>

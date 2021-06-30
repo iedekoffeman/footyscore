@@ -1,0 +1,44 @@
+.main-nav {
+    color: white;
+    text-decoration: none;
+}
+
+.main-nav-active, .active {
+    color: var(--secondary-text-color);
+}
+
+.main-nav:hover {
+    color: var(--secondary-text-color);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    font-size: 1em;
+}
+
+header a {
+    font-size: 1.3em;
+    padding: 0 10px;
+}
+@media only screen and (min-width: 1200px) {
+
+    nav ul {
+        flex-direction: row;
+    }
+
+    nav ul li a, header a {
+        font-size: 1.5em;
+    }
+
+}

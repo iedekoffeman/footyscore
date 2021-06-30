@@ -52,46 +52,20 @@ body > * {
     color: var(--secondary-text-color);
     font-size: 1.2em;
 }
-
-nav ul {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    list-style: none;
-}
-
-nav ul li {
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    font-size: 1em;
-}
-
-header a {
-    font-size: 1.3em;
-    padding: 0 10px;
-}
-
-.main-nav {
-    color: white;
-    text-decoration: none;
-}
-
-.main-nav-active, .active {
-    color: var(--secondary-text-color);
-}
-
-.main-nav:hover {
-    color: var(--secondary-text-color);
-}
-
-.search {
+.menu-buttons  {
     margin-left: auto;
-    padding-right: 5px;
 }
-
+.menu-buttons button {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+}
+.account {
+    margin-right: 30px;
+}
+.click:hover {
+    color: var(--secondary-text-color);
+}
 .sidebar-left, .sidebar-right {
     display: none;
 }
@@ -125,14 +99,6 @@ h2 {
     .sidebar-left, .sidebar-right {
         flex: 1;
         display: block;
-    }
-
-    nav ul {
-        flex-direction: row;
-    }
-
-    nav ul li a, header a {
-        font-size: 1.5em;
     }
 
 }
