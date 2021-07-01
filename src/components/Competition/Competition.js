@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import {
-    format,
-} from 'date-fns'
 import axios from "axios";
+import getDateFormat from "../../helpers/getDateFormat";
 import Match from '../Match/Match'
 import styles from './Competition.module.css';
 
@@ -12,7 +10,7 @@ const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 function Competition(props) {
 
     const [matchData, setMatchData] = useState(null);
-    const {fromToDate = `${format(new Date(), 'yyyy-MM-dd')}`} = useParams();
+    const {fromToDate = `${getDateFormat(new Date())}`} = useParams();
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState();
 

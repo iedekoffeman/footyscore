@@ -3,14 +3,14 @@ import {
     NavLink,
 } from 'react-router-dom';
 import {
-    addDays,
     format,
-    startOfWeek,
     addWeeks,
     subWeeks,
     isSameDay,
 
 } from 'date-fns'
+import getWeekDayArray from "../../helpers/getWeekDayArray";
+import getDateFormat from "../../helpers/getDateFormat";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
@@ -36,21 +36,6 @@ function NavigationDateBar() {
 
     }, [weekArray]);
 
-    function getWeekDayArray(date) {
-
-        let dayOfWeek;
-        let weekDaysArray;
-        let firstDOW;
-
-        !date ? dayOfWeek = new Date() : dayOfWeek = date
-
-        firstDOW = startOfWeek(dayOfWeek)
-
-        weekDaysArray = Array.from(Array(7)).map((element, i) => addDays(firstDOW, i))
-
-        return weekDaysArray;
-
-    }
 
     function enableOrDisableChevron(weekDaysArray) {
 
@@ -85,7 +70,7 @@ function NavigationDateBar() {
 
                 {weekArray ? (weekArray.map((day) => {
 
-                    const dayFormatted = format(day, 'yyyy-MM-dd')
+                    const dayFormatted = getDateFormat(day);
 
                     return <li key={day}>
                                 <NavLink

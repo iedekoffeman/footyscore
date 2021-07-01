@@ -7,9 +7,7 @@ import {
     useLocation,
     useHistory
 } from 'react-router-dom';
-import {
-    format,
-} from 'date-fns'
+import getDateFormat from "./helpers/getDateFormat";
 import ResultsPage from './pages/Results/Results';
 import FavoritesPage from './pages/Favorites/Favorites';
 import LiveScoresPage from "./pages/LiveScores/Live-scores";
@@ -129,7 +127,7 @@ function App() {
                     <Route exact path="/">
                         <Redirect
                             to={{
-                                pathname: `/results/${format(new Date(), 'yyyy-MM-dd')}`,
+                                pathname: `/results/${getDateFormat(new Date())}`,
                             }}
                         />
                     </Route>
@@ -157,7 +155,7 @@ function App() {
                     <Route path="/signout">
                         <Redirect
                             to={{
-                                pathname: `/results/${format(new Date(), 'yyyy-MM-dd')}`,
+                                pathname: `/results/${getDateFormat(new Date())}`,
                             }}
                         />
                     </Route>

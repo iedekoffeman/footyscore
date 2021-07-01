@@ -1,5 +1,5 @@
 import {NavLink} from "react-router-dom";
-import {format} from "date-fns";
+import getDateFormat from "../../helpers/getDateFormat";
 import styles from './NavigationMenu.module.css';
 
 
@@ -15,7 +15,7 @@ function NavigationMenu(props) {
 
                 <li key={"results"}>
                     <NavLink
-                        to={`/results/${format(new Date(), 'yyyy-MM-dd')}`}
+                        to={`/results/${getDateFormat(new Date())}`}
                         className={styles['main-nav']}
                         //class .active for isActive can be found in app.css
                         isActive={() => ['results'].includes(props.pathname.split('/')[1])}
