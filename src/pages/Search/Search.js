@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import Autocomplete from "../../components/Autocomplete/Autocomplete";
 import Competition from "../../components/Competition/Competition";
 import styles from './Search.module.css';
+import { CountryContext} from "../../contexts/CountryContext";
 
 
 function SearchPage(props) {
@@ -9,37 +10,13 @@ function SearchPage(props) {
     const [userInput, setUserInput] = useState("")
     const [competition, setCompetition] = useState()
     const [inputSubmitted, toggleInputSubmitted] = useState(false)
+    const {
+        countryArray
 
-    const suggestions =  [
-        {
-            "id": 2021,
-            "country": "England",
-        },
-        {
-            "id": 2015,
-            "country": "France",
-        },
-        {
-            "id": 2002,
-            "country": "Germany",
-        },
-        {
-            "id": 2018,
-            "country": "Euro 2020",
-        },
-        {
-            "id": 2019,
-            "country": "Italy",
-        },
-        {
-            "id": 2003,
-            "country": "Holland",
-        },
-        {
-            "id": 2014,
-            "country": "Spain",
-        },
-    ]
+    } = useContext(CountryContext);
+    console.log("context", countryArray);
+
+    const suggestions =  countryArray;
     console.log("what is comp data", competitionData)
     useEffect(() => {
 
