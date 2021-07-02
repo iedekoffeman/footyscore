@@ -1,5 +1,7 @@
+import {useContext} from 'react';
 import getDateFormat from "./helpers/getDateFormat";
 import getWeekDayArray from "./helpers/getWeekDayArray";
+import getCountryCode from "./helpers/getCountryCode";
 
 test('The getDateFormat receives a date and returns the formatted day to yyyy-MM-dd', () => {
 
@@ -34,5 +36,56 @@ test('The getWeekDayArray receives a date and returns an array of all dates that
             new Date('2021-07-02T22:00:00.000Z'),
             ]
         );
+
+})
+
+test('The getCountryCode receives an array of countries and a countryName, it returns a countryCode if it finds the countryname', () => {
+
+    //Arrange
+    const countryArray =[
+        {
+            "id": 2021,
+            "country": "England",
+            "code": "uk",
+        },
+        {
+            "id": 2015,
+            "country": "France",
+            "code": "fr",
+        },
+        {
+            "id": 2002,
+            "country": "Germany",
+            "code": "de",
+        },
+        {
+            "id": 2018,
+            "country": "Europe",
+            "code": "EU",
+        },
+        {
+            "id": 2019,
+            "country": "Italy",
+            "code": "it",
+        },
+        {
+            "id": 2003,
+            "country": "Holland",
+            "code": "nl",
+        },
+        {
+            "id": 2014,
+            "country": "Spain",
+            "code": "es",
+        },
+    ]
+
+    const countryName = 'England';
+
+    //Act
+    const countryCode = getCountryCode(countryArray, countryName);
+
+    //Assert
+    expect(countryCode).toBe('uk');
 
 })
