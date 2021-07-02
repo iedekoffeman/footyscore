@@ -1,13 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from "axios";
 import getDateFormat from "../../helpers/getDateFormat";
 import Match from '../Match/Match'
 import styles from './Competition.module.css';
+import Flag from 'react-world-flags'
+import { CountryContext} from "../../contexts/CountryContext";
+import getCountryCode from "../../helpers/getCountryCode";
 
 const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 
 function Competition(props) {
+
+    const {
+        countryArray
+
+    } = useContext(CountryContext);
+    console.log("context", countryArray);
 
     const [matchData, setMatchData] = useState(null);
     const {fromToDate = `${getDateFormat(new Date())}`} = useParams();
@@ -37,7 +46,6 @@ function Competition(props) {
                 console.log('Matches:', result.data);
                 setMatchData(result.data);
 
-
             } catch (e) {
                 console.error(e);
                 setError(true);
@@ -60,15 +68,19 @@ function Competition(props) {
 
     console.log("matchesDD", matchData);
 
+
     return (
         <>
             {
                 matchData && matchData.matches.length ? (
 
                     <article className={styles['competition-content']}>
-
-                        <p className={styles.country}>{props.countryName}</p>
-
+                        <div className={styles['country-info-wrapper']}>
+                            <figure>
+                                 <Flag code={getCountryCode(countryArray, props.countryName)} height="16" fallback={ <span>eng</span> }/>
+                            </figure>
+                            <p  className={styles.country}>{props.countryName}</p>
+                        </div>
                         {matchData.matches.map((match) => {
                                 console.log('Match', match)
                                 return <Match key={match.id} matchID={match.id} match={match}

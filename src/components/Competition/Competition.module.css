@@ -5,7 +5,25 @@
     align-items: center;
 }
 
+.country-info-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
 .country {
-    margin: 20px 0 0 60px;
-    align-self: flex-start;
+    margin: 0;
+}
+
+figure {
+    margin: 0 10px 0 15px;
+}
+
+@media only screen and (min-width: 1200px) {
+
+    figure {
+        margin: 2px 8px 0 30px;
+    }
 }

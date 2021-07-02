@@ -8,7 +8,9 @@ test('renders learn react link', () => {
  render(
      <Router>
       <AuthContextProvider>
-       <App/>
+          <countryContextProvide>
+              <App/>
+          </countryContextProvide>
       </AuthContextProvider>
      </Router>
      );
