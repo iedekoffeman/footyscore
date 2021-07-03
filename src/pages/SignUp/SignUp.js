@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom'
+import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
+
+
 
 function SignUp() {
     const history = useHistory();
@@ -40,39 +43,39 @@ function SignUp() {
 
     return (
         <>
-            <h2>Registreren</h2>
-            <p>{succes && "Your account is registrated successfully"}</p>
-            <p>{loading && "Loading.. one moment please"}</p>
+            <h2>Sign up</h2>
+            {succes && <SuccessMessage message={"Your account registration was successfully submitted"}/>}
+            {loading && <p className="loading">Loading.. one moment please</p>}
 
             {!succes &&
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <label htmlFor="email-field">
-                        Email:
                         <input
                             type="email"
                             id="email-field"
                             name="email"
+                            placeholder="Email address"
                             {...register("email")}
                         />
                     </label>
 
                     <label htmlFor="username-field">
-                        Gebruikersnaam:
                         <input
                             type="text"
                             id="username-field"
                             name="username"
+                            placeholder="Username"
                             {...register("username")}
                         />
                     </label>
 
                     <label htmlFor="password-field">
-                        Wachtwoord:
                         <input
                             type="password"
                             id="password-field"
                             name="password"
+                            placeholder="Password"
                             {...register("password")}
                         />
                     </label>
@@ -81,11 +84,11 @@ function SignUp() {
                         className="form-button"
                         disabled={loading}
                     >
-                        Maak account aan
+                        Sign up
                     </button>
                 </form>
             }
-            <p>Heb je al een account? Je kunt je <Link to="/signin">hier</Link> inloggen.</p>
+            <p className="form-link">Sign in  <Link to="/signin">here</Link></p>
 
         </>
     );

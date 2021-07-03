@@ -47,7 +47,7 @@ function Competition(props) {
                 setMatchData(result.data);
 
             } catch (e) {
-                console.error(e);
+                console.error("Error", e);
                 setError(true);
                 toggleLoading(false);
             }
@@ -58,7 +58,7 @@ function Competition(props) {
 
 
         if(props.competitionID || fromToDate || props.status) {
-             fetchCompetitionMatches()
+             fetchCompetitionMatches();
         }
 
     }, [props.competitionID, fromToDate, props.status])

@@ -1,0 +1,15 @@
+.success {
+    background: #DFF2BF;
+    color: #4F8A10;
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid darkgreen;
+    width: 400px;
+    display: block;
+    margin-left: 20px;
+}
+.CheckCircle {
+    font-size: 1em;
+    margin-right: 10px;
+
+}

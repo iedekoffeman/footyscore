@@ -1,5 +1,4 @@
 import {useContext} from 'react'
-import {format} from "date-fns";
 import styles from './AccountMenu.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faSignInAlt} from '@fortawesome/free-solid-svg-icons'

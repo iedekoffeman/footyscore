@@ -93,6 +93,33 @@ h2 {
     margin: 0 0 0 40px;
     color: var(--secondary-text-color);
 
+
+}
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 32px;
+}
+form input {
+    margin-bottom: 20px;
+}
+.form-button {
+    border-radius: 10px;
+    border: 1px solid var(--secondary-text-color);
+    padding: 8px 16px;
+    width: 100%;
+    background-color: #FFFFFF;
+    color: var(--secondary-text-color);
+    font-size: 1em;
+}
+.form-button:hover {
+    background-color: var(--secondary-text-color);
+    color: #FFFFFF;
+}
+.form-link {
+    text-align: left;
+    margin-left: 35px;
 }
 @media only screen and (min-width: 1200px) {
     .flexbox-wrapper {

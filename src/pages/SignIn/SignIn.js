@@ -36,25 +36,25 @@ function SignIn() {
 
     return (
         <>
-            <h2>Inloggen</h2>
+            <h2>Sign in</h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="username-field">
-                    Username:
                     <input
                         type="text"
                         id="username-field"
                         name="username"
+                        placeholder="Username"
                         {...register("username")}
                     />
                 </label>
 
                 <label htmlFor="password-field">
-                    Password:
                     <input
                         type="password"
                         id="password-field"
                         name="password"
+                        placeholder="Password"
                         {...register("password")}
                     />
                 </label>
@@ -65,7 +65,7 @@ function SignIn() {
                     Sign in
                 </button>
             </form>
-            <p>If you don't have an account <Link to="/signup">Sign-up</Link> Here.</p>
+            <p className="form-link">No account yet? <Link to="/signup">Sign-up</Link> Here.</p>
         </>
     );
 }
