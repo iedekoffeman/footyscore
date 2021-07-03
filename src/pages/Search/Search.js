@@ -3,6 +3,7 @@ import Autocomplete from "../../components/Autocomplete/Autocomplete";
 import Competition from "../../components/Competition/Competition";
 import styles from './Search.module.css';
 import { CountryContext} from "../../contexts/CountryContext";
+import ColoredLine from "../../components/ColoredLine/ColoredLine";
 
 
 function SearchPage(props) {
@@ -44,8 +45,8 @@ function SearchPage(props) {
             <h2>Search</h2>
             <Autocomplete suggestions={suggestions} userInput={userInput} setUserInput={setUserInput} toggleSubmitted={toggleInputSubmitted} />
             <p className={styles['search-p']}>The search query applies to matches played at this moment (live)</p>
-            <p className={styles['search-p']}>For now, available options are Euro 2020, England, France, Italy, Holland, spain and Germany</p>
-
+            <p className={styles['search-p-last']}>For now, available options are Euro 2020, England, France, Italy, Holland, spain and Germany</p>
+            <ColoredLine />
             { competition ? (
                 <>
 

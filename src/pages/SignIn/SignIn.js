@@ -3,6 +3,7 @@ import  {useForm}  from 'react-hook-form'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {authContext} from '../../contexts/AuthContext'
+import ColoredLine from "../../components/ColoredLine/ColoredLine";
 
 
 function SignIn() {
@@ -37,7 +38,7 @@ function SignIn() {
     return (
         <>
             <h2>Sign in</h2>
-
+            <ColoredLine />
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="username-field">
                     <input

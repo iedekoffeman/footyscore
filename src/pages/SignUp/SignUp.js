@@ -4,6 +4,7 @@ import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom'
 import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
+import ColoredLine from "../../components/ColoredLine/ColoredLine";
 
 
 
@@ -44,6 +45,7 @@ function SignUp() {
     return (
         <>
             <h2>Sign up</h2>
+            <ColoredLine />
             {succes && <SuccessMessage message={"Your account registration was successfully submitted"}/>}
             {loading && <p className="loading">Loading.. one moment please</p>}
 

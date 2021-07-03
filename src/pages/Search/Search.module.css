@@ -1,6 +1,10 @@
-.search-p {
-    margin: 10px 0 0 28px ;
+.search-p, .search-p-last {
+    margin: 10px 0 0 42px ;
     font-size: 0.7em;
     text-align: left;
 
+}
+.search-p-last {
+
+    margin-bottom: 30px;
 }

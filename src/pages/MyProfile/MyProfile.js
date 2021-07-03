@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
 import { authContext} from "../../contexts/AuthContext";
+import styles from './MyProfile.module.css';
+import {Link} from "react-router-dom";
+import ColoredLine from "../../components/ColoredLine/ColoredLine";
 
 function MyProfile() {
 
@@ -13,6 +16,11 @@ function MyProfile() {
     return (
         <>
             <h2>My Profile</h2>
+            <ColoredLine />
+        <div className={styles['myprofile-flex-wrapper']}>
+            <p>Hello {user && user.username} </p>
+
+            <p>You're signed in, see your username and e-mailaddress below:</p>
 
             <p>
                 <strong>ID:</strong> {user && user.id}
@@ -27,6 +35,8 @@ function MyProfile() {
 
             </p>
 
+            <p>To logout, click sign-out under the account menu or sign-out <Link to="/signout">here</Link></p>
+        </div>
         </>
     );
 }

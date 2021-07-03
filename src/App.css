@@ -100,6 +100,7 @@ form {
     flex-direction: column;
     width: 300px;
     padding: 32px;
+    margin-left: 12px;
 }
 form input {
     margin-bottom: 20px;
@@ -119,7 +120,7 @@ form input {
 }
 .form-link {
     text-align: left;
-    margin-left: 35px;
+    margin-left: 46px;
 }
 @media only screen and (min-width: 1200px) {
     .flexbox-wrapper {

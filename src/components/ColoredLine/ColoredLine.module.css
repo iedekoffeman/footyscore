@@ -1,0 +1,4 @@
+.colored-line {
+    border-top: 1px solid var(--secondary-text-color);
+    width: 100%;
+}
