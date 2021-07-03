@@ -77,7 +77,7 @@ function Competition(props) {
                     <article className={styles['competition-content']}>
                         <div className={styles['country-info-wrapper']}>
                             <figure>
-                                 <Flag code={getCountryCode(countryArray, props.countryName)} height="16" fallback={ <span>eng</span> }/>
+                                 <Flag code={getCountryCode(countryArray, props.countryName)} height="16" fallback={ <span>flag</span> }/>
                             </figure>
                             <p  className={styles.country}>{props.countryName}</p>
                         </div>
@@ -94,7 +94,7 @@ function Competition(props) {
 
                 ) : matchData && !matchData.matches.length ? (
 
-                    <></>
+                    <p>Er zijn momenteel geen live wedstrijden</p>
 
                 ) : error ? (
 

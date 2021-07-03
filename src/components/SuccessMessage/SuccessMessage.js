@@ -14,7 +14,7 @@ function SuccessMessage(props) {
                 className={styles.CheckCircle}
             />
 
-            Your account registration was successfully submitted
+            {props.message}
 
         </p>
     )

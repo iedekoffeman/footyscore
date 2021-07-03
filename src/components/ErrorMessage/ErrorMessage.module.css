@@ -1,0 +1,16 @@
+.error {
+    background: #FFD2D2;
+    color: #D8000C;
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid darkgreen;
+    width: 400px;
+    display: block;
+    margin-left:0;
+    margin-top: 0;
+}
+.faTimes {
+    font-size: 1em;
+    margin-right: 10px;
+
+}

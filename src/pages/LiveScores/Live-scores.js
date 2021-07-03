@@ -1,5 +1,6 @@
 import React from 'react';
 import Competition from "../../components/Competition/Competition";
+import ColoredLine from "../../components/ColoredLine/ColoredLine";
 
 function LiveScoresPage(props) {
 
@@ -8,6 +9,7 @@ function LiveScoresPage(props) {
 
         <>
             <h2>Live scores</h2>
+            <ColoredLine />
 
             {props.competitions ? (
                 <>

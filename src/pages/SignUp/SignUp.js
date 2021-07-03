@@ -4,13 +4,14 @@ import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom'
 import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import ColoredLine from "../../components/ColoredLine/ColoredLine";
 
 
 
 function SignUp() {
     const history = useHistory();
-    const {handleSubmit, register} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm({mode: 'onBlur'});
     const [succes, setSucces] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -58,8 +59,21 @@ function SignUp() {
                             id="email-field"
                             name="email"
                             placeholder="Email address"
-                            {...register("email")}
+                            {...register("email", {
+                                required: {
+                                    value: true,
+                                    message: "This field is required",
+                                },
+                                pattern: {
+                                    value: /^\S+@\S+$/i ,
+                                    message: "Please include an '@' in the email addresss",
+                                }
+
+                            })}
                         />
+
+                        {errors.email && <ErrorMessage message={errors.email.message}/>}
+
                     </label>
 
                     <label htmlFor="username-field">
@@ -68,8 +82,23 @@ function SignUp() {
                             id="username-field"
                             name="username"
                             placeholder="Username"
-                            {...register("username")}
+                            {...register("username", {
+
+                                required: {
+                                    value: true,
+                                    message: "This field is required",
+                                },
+                                minLength:  {
+                                    value: 6,
+                                    message: "A username must contain at least 6 characters",
+                                }
+
+                            })}
+
                         />
+
+                        {errors.username && <ErrorMessage message={errors.username.message}/>}
+
                     </label>
 
                     <label htmlFor="password-field">
@@ -78,9 +107,26 @@ function SignUp() {
                             id="password-field"
                             name="password"
                             placeholder="Password"
-                            {...register("password")}
+                            {...register("password", {
+
+                                required: {
+                                    value: true,
+                                    message: "This field is required",
+                                },
+                                minLength:  {
+                                    value: 8,
+                                    message: "A password must contain at least 8 characters",
+                                }
+
+
+                            })}
+
                         />
+
+                        {errors.password && <ErrorMessage message={errors.password.message}/>}
+
                     </label>
+
                     <button
                         type="submit"
                         className="form-button"
