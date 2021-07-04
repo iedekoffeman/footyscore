@@ -13,6 +13,7 @@ function SignUp() {
     const history = useHistory();
     const {register, handleSubmit, formState: {errors}} = useForm({mode: 'onBlur'});
     const [succes, setSucces] = useState(false);
+    const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
     async function onSubmit(data) {
@@ -36,7 +37,8 @@ function SignUp() {
             setSucces(true);
             setTimeout(() => history.push('/signin'), 2000);
         } catch (error) {
-            console.log("ERROR?", error);
+            console.log("ERROR?", error.response.data);
+            setError(error.response.data.message);
         }
 
         setLoading(false);
@@ -114,8 +116,8 @@ function SignUp() {
                                     message: "This field is required",
                                 },
                                 minLength:  {
-                                    value: 8,
-                                    message: "A password must contain at least 8 characters",
+                                    value: 6,
+                                    message: "A password must contain at least 6 characters",
                                 }
 
 
@@ -126,6 +128,8 @@ function SignUp() {
                         {errors.password && <ErrorMessage message={errors.password.message}/>}
 
                     </label>
+
+                    {error && <ErrorMessage message={error} />}
 
                     <button
                         type="submit"
