@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from "axios";
+import * as rax from 'retry-axios';
 import getDateFormat from "../../helpers/getDateFormat";
 import Match from '../Match/Match'
 import styles from './Competition.module.css';
@@ -8,9 +9,10 @@ import Flag from 'react-world-flags'
 import { CountryContext} from "../../contexts/CountryContext";
 import getCountryCode from "../../helpers/getCountryCode";
 
+
 const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 
-function Competition(props) {
+function Competition({competitionID, status, countryName}) {
 
     const {
         countryArray
@@ -20,8 +22,9 @@ function Competition(props) {
 
     const [matchData, setMatchData] = useState(null);
     const {fromToDate = `${getDateFormat(new Date())}`} = useParams();
-    const [error, setError] = useState(false);
+    const [error, setError] = useState('');
     const [loading, toggleLoading] = useState();
+
 
     console.log("date in competition", fromToDate)
 
@@ -32,41 +35,53 @@ function Competition(props) {
 
         async function fetchCompetitionMatches() {
 
-            setError(false);
             toggleLoading(true);
 
             try {
-
+                rax.attach();
                 const result = await
-                    axios.get(`https://api.football-data.org/v2/matches?competitions=${props.competitionID}&status=${props.status}&dateFrom=${fromToDate}&dateTo=${fromToDate}`, {
+                    axios.get(`https://api.football-data.org/v2/matches?competitions=${competitionID}&status=${status}&dateFrom=${fromToDate}&dateTo=${fromToDate}`, {
                         headers: {
                             "X-Auth-Token": `${apikey}`,
+                        },
+                        raxConfig: {
+                            statusCodesToRetry: [[429, 429]],
+                            backoffType: 'static',
+                            retryDelay: 60000,
+                            onRetryAttempt: error => {
+                                const cfg = rax.getConfig(error);
+                                console.log(`Retry attempt #${cfg.currentRetryAttempt}`);
+                                setError("We use a free API, there were too many requests it refreshes automatically after 60 seconds");
+                            }
                         }
                     });
                 console.log('Matches:', result.data);
                 setMatchData(result.data);
+                setError('');
 
-            } catch (e) {
-                console.error("Error", e);
-                setError(true);
+
+            } catch (error) {
+
+                if (error.response.status === 429) {
+                    setError(error.response.data.message);
+                }
+
                 toggleLoading(false);
+
             }
 
-
         }
 
+          fetchCompetitionMatches();
 
 
-        if(props.competitionID || fromToDate || props.status) {
-             fetchCompetitionMatches();
-        }
-
-    }, [props.competitionID, fromToDate, props.status])
+    }, [competitionID, fromToDate, status])
 
 
 
 
     console.log("matchesDD", matchData);
+
 
 
     return (
@@ -77,9 +92,9 @@ function Competition(props) {
                     <article className={styles['competition-content']}>
                         <div className={styles['country-info-wrapper']}>
                             <figure>
-                                 <Flag code={getCountryCode(countryArray, props.countryName)} height="16" fallback={ <span>flag</span> }/>
+                                 <Flag code={getCountryCode(countryArray, countryName)} height="16" fallback={ <span>flag</span> }/>
                             </figure>
-                            <p  className={styles.country}>{props.countryName}</p>
+                            <p  className={styles.country}>{countryName}</p>
                         </div>
                         {matchData.matches.map((match) => {
                                 console.log('Match', match)
@@ -92,18 +107,20 @@ function Competition(props) {
 
                     </article>
 
-                ) : matchData && !matchData.matches.length ? (
-
-                    <p>Er zijn momenteel geen live wedstrijden</p>
-
                 ) : error ? (
+                    <>
+                        <p>{error}</p>
 
-                    <p>Er is iets misgegaan met het ophalen van de data.</p>
+                    </>
+                ) : matchData && !matchData.matches.length && !error  ? (
+
+                    <p>No games for {countryName}</p>
 
                 ) : loading && (
 
-                    <p>Loading...</p>
+                    <p>Loading games for {countryName}...</p>
                 )}
+
 
         </>
     )

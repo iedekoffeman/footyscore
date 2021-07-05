@@ -1,4 +1,3 @@
-import {useContext} from 'react';
 import getDateFormat from "./helpers/getDateFormat";
 import getWeekDayArray from "./helpers/getWeekDayArray";
 import getCountryCode from "./helpers/getCountryCode";

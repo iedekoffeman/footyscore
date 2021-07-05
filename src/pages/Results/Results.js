@@ -3,8 +3,8 @@ import Competition from '../../components/Competition/Competition'
 import NavigationDateBar from "../../components/NavigationDateBar/NavigationDateBar";
 
 
-function ResultsPage(props) {
 
+function ResultsPage(props) {
 
     return (
 
@@ -17,8 +17,12 @@ function ResultsPage(props) {
             {props.competitions ? (
                 <>
                     {props.competitions.map((competition) => {
-                        return <Competition key={competition.id} status={"FINISHED"} competitionID={competition.id}
-                                            countryName={competition.area.name}/>
+                        return <Competition
+                                    key={competition.id}
+                                    status={"FINISHED"}
+                                    competitionID={competition.id}
+                                    countryName={competition.area.name}
+                        />
 
                     })}
                 </>
