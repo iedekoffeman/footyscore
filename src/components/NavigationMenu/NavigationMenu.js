@@ -1,11 +1,17 @@
 import {NavLink} from "react-router-dom";
+import { authContext} from "../../contexts/AuthContext";
 import getDateFormat from "../../helpers/getDateFormat";
 import styles from './NavigationMenu.module.css';
+import {useContext} from "react";
 
 
 function NavigationMenu(props) {
 
     console.log(props.pathname);
+    const {
+        authState: {user},
+
+    } = useContext(authContext);
 
     return (
 
@@ -24,27 +30,31 @@ function NavigationMenu(props) {
 
                     </NavLink>
                 </li>
-                <li key={"favorites"}>
-                    <NavLink
-                        to={"/favorites"}
-                        className={styles['main-nav']}
-                        activeClassName={styles['main-nav-active']}
-                    >
-                        Favorites
+                {user &&
+                    <>
+                        <li key={"favorites"}>
+                            <NavLink
+                                to={"/favorites"}
+                                className={styles['main-nav']}
+                                activeClassName={styles['main-nav-active']}
+                            >
+                                Favorites
 
-                    </NavLink>
-                </li>
-                <li key={"live-scores"}>
-                    <NavLink
-                        to={"/live-scores"}
-                        className={styles['main-nav']}
-                        activeClassName={styles['main-nav-active']}
-                    >
+                            </NavLink>
+                        </li>
+                            <li key={"live-scores"}>
+                            <NavLink
+                            to={"/live-scores"}
+                            className={styles['main-nav']}
+                            activeClassName={styles['main-nav-active']}
+                            >
 
-                        Live scores
+                            Live scores
 
-                    </NavLink>
-                </li>
+                            </NavLink>
+                        </li>
+                    </>
+                 }
             </ul>
 
         </nav>

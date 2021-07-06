@@ -1,9 +1,11 @@
 import React, {useEffect, useState, useContext} from 'react';
+import { authContext} from "../../contexts/AuthContext";
 import Autocomplete from "../../components/Autocomplete/Autocomplete";
 import Competition from "../../components/Competition/Competition";
 import styles from './Search.module.css';
 import { CountryContext} from "../../contexts/CountryContext";
 import ColoredLine from "../../components/ColoredLine/ColoredLine";
+import {Link} from "react-router-dom";
 
 
 function SearchPage(props) {
@@ -11,6 +13,10 @@ function SearchPage(props) {
     const [userInput, setUserInput] = useState("")
     const [competition, setCompetition] = useState()
     const [inputSubmitted, toggleInputSubmitted] = useState(false)
+    const {
+        authState: {user},
+
+    } = useContext(authContext);
     const {
         countryArray
 
@@ -43,27 +49,41 @@ function SearchPage(props) {
 
         <>
             <h2>Search</h2>
-            <Autocomplete suggestions={suggestions} userInput={userInput} setUserInput={setUserInput} toggleSubmitted={toggleInputSubmitted} />
-            <p className={styles['search-p']}>The search query applies to matches played at this moment (live)</p>
-            <p className={styles['search-p-last']}>For now, available options are Euro 2020, England, France, Italy, Holland, spain and Germany</p>
-            <ColoredLine />
-            { competition ? (
-                <>
 
-                    <Competition key={competition.id} status={"LIVE"} competitionID={competition.id}
-                                            countryName={competition.area.name}/>
+            {user ? (
+                <>
+                    <Autocomplete suggestions={suggestions} userInput={userInput} setUserInput={setUserInput}
+                                  toggleSubmitted={toggleInputSubmitted}/>
+                    <p className={styles['search-p']}>The search query applies to matches played at this moment (live)</p>
+                    <p className={styles['search-p-last']}>For now, available options are Euro 2020, England, France, Italy, Holland, spain and Germany</p>
+                    <ColoredLine />
 
                 </>
 
-            ) : props.error ? (
+                ) : (
+
+                    <p>You are not signed in, sign in <Link to="/signin">here</Link></p>
+                )
+            }
+
+            {competition ? (
+                <>
+
+                <Competition key={competition.id} status={"LIVE"} competitionID={competition.id}
+                countryName={competition.area.name}/>
+
+                </>
+
+                ) : props.error ? (
 
                 <p>Er is iets misgegaan met het ophalen van de data.</p>
 
-            ) : props.loading && (
+                ) : props.loading && (
 
                 <p>Loading....</p>
 
-            )}
+                )}
+
         </>
     )
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './App.css';
 import {
     Switch,
@@ -32,6 +32,7 @@ function App() {
     const [loading, toggleLoading] = useState();
     const [showAccountMenu, toggleShowAccountMenu] = useState("hide");
     const history = useHistory();
+
 
     function showActionMenu() {
         toggleShowAccountMenu(' ');
