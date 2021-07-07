@@ -15,6 +15,6 @@ test('renders learn react link', () => {
       </AuthContextProvider>
      </Router>
      );
-  const linkElement = screen.getByText(/footyscore/i);
+  const linkElement = screen.getByText(/i.koffeman@gmail.com/i);
   expect(linkElement).toBeInTheDocument();
 });

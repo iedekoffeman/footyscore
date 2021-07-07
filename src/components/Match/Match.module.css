@@ -31,3 +31,13 @@
 .away-team, .away-team-score {
     margin: 0;
 }
+.win {
+    color: #4F8A10;
+}
+.lose {
+    color: #D8000C;
+}
+.tie {
+    color: #8F8F8F;
+}
+

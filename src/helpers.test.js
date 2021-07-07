@@ -1,6 +1,7 @@
 import getDateFormat from "./helpers/getDateFormat";
 import getWeekDayArray from "./helpers/getWeekDayArray";
 import getCountryCode from "./helpers/getCountryCode";
+import getClassNameResult from "./helpers/getClassNameResult";
 
 test('The getDateFormat receives a date and returns the formatted day to yyyy-MM-dd', () => {
 
@@ -86,5 +87,19 @@ test('The getCountryCode receives an array of countries and a countryName, it re
 
     //Assert
     expect(countryCode).toBe('uk');
+
+})
+
+test('The getClassNameResult gets 2 numbers as input and returns a win,lose, tie based on condition', () => {
+
+    //Arrange
+    const homeTeamScore = 2;
+    const awayTeamScore = 3;
+
+    //Act
+    const classNameResult = getClassNameResult(homeTeamScore, awayTeamScore);
+
+    //Assert
+    expect(classNameResult).toBe('lose');
 
 })
