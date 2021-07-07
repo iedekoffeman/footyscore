@@ -20,6 +20,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faFutbol} from '@fortawesome/free-solid-svg-icons'
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
+import {faCopyright} from '@fortawesome/free-solid-svg-icons'
+import {faEnvelope} from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
 import NavigationMenu from "./components/NavigationMenu/NavigationMenu";
 
@@ -166,7 +168,12 @@ function App() {
                 </Switch>
             </main>
             <aside className="sidebar-right">Sidebar</aside>
-            <footer className="footer">Footer</footer>
+            <footer className="footer">
+
+                <p><FontAwesomeIcon icon={faCopyright} /> FootyScore</p>
+
+                <p><FontAwesomeIcon icon={faEnvelope} /> i.koffeman@gmail.com</p>
+            </footer>
         </div>
 
     );
