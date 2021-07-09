@@ -10,9 +10,9 @@ ul.nav-date {
 }
 
 ul.nav-date li  {
-    font-size: 1em;
+    font-size: 1.3em;
     text-align: center;
-    width: 50px;
+    width: 45px;
     padding: 5px 0;
 }
 .date-bar {
@@ -51,6 +51,7 @@ ul.nav-date li  {
 
     ul.nav-date li {
         font-size: 1.5em;
+        width: 50px;
 
     }
 }
