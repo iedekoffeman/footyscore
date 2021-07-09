@@ -1,8 +1,11 @@
+import {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import { authContext} from "../../contexts/AuthContext";
 import getDateFormat from "../../helpers/getDateFormat";
 import styles from './NavigationMenu.module.css';
 import {useContext} from "react";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faBars} from '@fortawesome/free-solid-svg-icons'
 
 
 function NavigationMenu(props) {
@@ -12,12 +15,22 @@ function NavigationMenu(props) {
         authState: {user},
 
     } = useContext(authContext);
+    const[isActive, setActive] = useState(false);
+
+    function toggleClass() {
+        setActive(!isActive);
+    }
 
     return (
 
         <nav>
-            <ul>
-
+            <button
+                className={styles.hamburger}
+                onClick={() => toggleClass()}
+            >
+                <FontAwesomeIcon icon={faBars}/>
+            </button>
+            <ul className={`${styles[isActive ? 'responsive' : null]}`}>
 
                 <li key={"results"}>
                     <NavLink
@@ -25,6 +38,7 @@ function NavigationMenu(props) {
                         className={styles['main-nav']}
                         //class .active for isActive can be found in app.css
                         isActive={() => ['results'].includes(props.pathname.split('/')[1])}
+                        onClick={() => toggleClass()}
                     >
                         Results
 
@@ -37,6 +51,7 @@ function NavigationMenu(props) {
                                 to={"/favorites"}
                                 className={styles['main-nav']}
                                 activeClassName={styles['main-nav-active']}
+                                onClick={() => toggleClass()}
                             >
                                 Favorites
 
@@ -47,6 +62,7 @@ function NavigationMenu(props) {
                             to={"/live-scores"}
                             className={styles['main-nav']}
                             activeClassName={styles['main-nav-active']}
+                            onClick={() => toggleClass()}
                             >
 
                             Live scores

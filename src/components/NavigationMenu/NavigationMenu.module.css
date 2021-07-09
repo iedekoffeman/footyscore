@@ -13,20 +13,44 @@
 
 nav ul {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
     list-style: none;
 }
-
 nav ul li {
+    display: none;
+}
+.hamburger {
+    margin: 0 0 0 100px;
+    display: block;
+    background: none;
+    border: none;
+}
+.hamburger:hover {
+    color: var(--secondary-text-color);
+}
+.responsive  {
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    list-style: none;
+    position: absolute;
     margin: 0;
     padding: 0;
-}
+    top: 74px;
+    left: 0;
+    width: 100%
 
-nav ul li {
+}
+.responsive li {
+
+    width: 100%;
+    padding: 20px;
+    display: block;
+    background: black;
     font-size: 1em;
+    text-align: left;
 }
-
 header a {
     font-size: 1.3em;
     padding: 0 10px;
@@ -35,10 +59,17 @@ header a {
 
     nav ul {
         flex-direction: row;
+        justify-content: center;
+    }
+    nav ul li {
+        display: block;
     }
 
     nav ul li a, header a {
         font-size: 1.5em;
+    }
+    .hamburger {
+        display: none;
     }
 
 }
