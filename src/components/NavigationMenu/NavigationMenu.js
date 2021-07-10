@@ -38,7 +38,7 @@ function NavigationMenu(props) {
                         className={styles['main-nav']}
                         //class .active for isActive can be found in app.css
                         isActive={() => ['results'].includes(props.pathname.split('/')[1])}
-                        onClick={() => toggleClass()}
+                        onClick={() => toggleClass}
                     >
                         Results
 

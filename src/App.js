@@ -32,15 +32,12 @@ function App() {
     const {pathname} = useLocation();
     const [error, setError] = useState(false);
     const [loading, toggleLoading] = useState();
-    const [showAccountMenu, toggleShowAccountMenu] = useState("hide");
+    const [isActive, setActive] = useState(false);
     const history = useHistory();
 
 
-    function showActionMenu() {
-        toggleShowAccountMenu(' ');
-    }
-    function disableActionMenu() {
-        toggleShowAccountMenu('hide');
+    function toggleClass() {
+        setActive(!isActive);
     }
 
 
@@ -114,11 +111,11 @@ function App() {
                     </button>
                     <button
                         className={'click account'}
-                        onMouseEnter={showActionMenu}
-                        onMouseLeave={disableActionMenu}
+                        onMouseEnter={toggleClass}
+                        onMouseLeave={toggleClass}
                     >
                         <FontAwesomeIcon icon={faUserCircle}/>
-                        <AccountMenu show={showAccountMenu} />
+                        <AccountMenu show={isActive} />
                     </button>
               </div>
 

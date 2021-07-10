@@ -17,7 +17,7 @@ function AccountMenu(props) {
     } = useContext(authContext);
 
     return (
-            <div className={`${styles['account-menu']} ${styles[props.show]}`} >
+            <div className={`${styles['account-menu']} ${styles[!props.show ? 'hide' : null]}`} >
                 <ul>
                     {!user ? (
                         <>
