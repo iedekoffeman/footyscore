@@ -11,45 +11,40 @@
     color: var(--secondary-text-color);
 }
 
-nav ul {
+.topnav {
     display: flex;
+    justify-content: flex-start;
     list-style: none;
+    padding: 0;
 }
-nav ul li {
+.topnav li {
     display: none;
 }
 .hamburger {
-    margin: 0 0 0 100px;
     display: block;
     background: none;
     border: none;
+    position: absolute;
+    top: 17px;
+    right: 110px;
+    font-size: 1.5em;
 }
-.hamburger:hover {
+.hamburger:hover, .hamburger:active {
     color: var(--secondary-text-color);
 }
-.responsive  {
-
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+.responsive {
     flex-direction: column;
-    list-style: none;
     position: absolute;
-    margin: 0;
-    padding: 0;
-    top: 74px;
+    top: 58px;
     left: 0;
-    width: 100%
-
+    background: black;
+    width: 100%;
 }
 .responsive li {
-
-    width: 100%;
-    padding: 20px;
     display: block;
-    background: black;
-    font-size: 1em;
+    padding: 20px;
     text-align: left;
+    margin: 0;
 }
 header a {
     font-size: 1.3em;
@@ -57,14 +52,18 @@ header a {
 }
 @media only screen and (min-width: 1200px) {
 
-    nav ul {
+    .topnav {
         flex-direction: row;
-        justify-content: center;
+        position: absolute;
+        top:  10px;
+        left: 387px;
+        width: 400px;
     }
-    nav ul li {
+    .topnav li {
         display: block;
+        padding: 0;
+        text-align: left;
     }
-
     nav ul li a, header a {
         font-size: 1.5em;
     }

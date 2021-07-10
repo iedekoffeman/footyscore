@@ -30,7 +30,7 @@ function NavigationMenu(props) {
             >
                 <FontAwesomeIcon icon={faBars}/>
             </button>
-            <ul className={`${styles[isActive ? 'responsive' : null]}`}>
+            <ul className={` ${styles.topnav} ${styles[isActive ? 'responsive' : null]}`}>
 
                 <li key={"results"}>
                     <NavLink
