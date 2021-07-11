@@ -1,35 +1,32 @@
 import React, {useState} from 'react';
-import {faSearch} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import styles from './Autocomplete.module.css';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faSearch} from '@fortawesome/free-solid-svg-icons'
 
+function Autocomplete({suggestions, userInput, setUserInput, toggleSubmit}) {
 
-function Autocomplete(props) {
-
-    const {suggestions, userInput, setUserInput, toggleSubmitted} = props;
     const [activeSuggestion, setActiveSuggestion] = useState(0)
     const [filteredSuggestions, setFilteredSuggestions] = useState([])
     const [showSuggestions, toggleShowSuggestions] = useState(false)
 
-
-
     let suggestionListComponent = null;
 
     //Will be fired when a user changes his search input in the inputbox
-    function handleOnChange(e) {
+    function handleOnChange(event) {
 
-        const userInput = e.currentTarget.value;
+        const userInput = event.currentTarget.value;
 
-        const filteredSuggestionsT = suggestions.filter(function (el) {
+        const filteredSuggestions = suggestions.filter(
+            function (element) {
 
-                return el.country.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-        })
+                return element.country.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+            })
 
 
         setActiveSuggestion(0)
-        setFilteredSuggestions(filteredSuggestionsT)
+        setFilteredSuggestions(filteredSuggestions)
         toggleShowSuggestions(true)
-        setUserInput(e.currentTarget.value)
+        setUserInput(event.currentTarget.value)
 
 
     }
@@ -76,7 +73,7 @@ function Autocomplete(props) {
 
     function handleOnSubmit() {
         console.log(userInput)
-        toggleSubmitted(true)
+        toggleSubmit(true)
     }
 
     return (
@@ -89,6 +86,7 @@ function Autocomplete(props) {
                         suggestionListComponent = (
                             <ul className={styles.suggestions}>
                                 {filteredSuggestions.map((suggestion, index) => {
+
                                     let className;
 
                                     // Flag the active suggestion with a class
@@ -96,7 +94,11 @@ function Autocomplete(props) {
                                         className = styles['suggestion-active']
                                     }
                                     return (
-                                        <li className={className} key={suggestion.id} onClick={handleOnClick}>
+                                        <li
+                                            className={className}
+                                            key={suggestion.id}
+                                            onClick={handleOnClick}
+                                        >
                                             {suggestion.country}
                                         </li>
                                     );
@@ -116,8 +118,8 @@ function Autocomplete(props) {
 
             <div className={styles['search-wrapper']}>
                 < input
-                    type="text"
-                    placeholder="Search country name..."
+                    type='text'
+                    placeholder='Search country name...'
                     onChange={(event) =>
                         handleOnChange(event)
                     }
@@ -130,7 +132,9 @@ function Autocomplete(props) {
                 <button
                     onClick={handleOnSubmit}
                 >
-                    <FontAwesomeIcon icon={faSearch}/>
+                    <FontAwesomeIcon
+                        icon={faSearch}
+                    />
 
                 </button>
 

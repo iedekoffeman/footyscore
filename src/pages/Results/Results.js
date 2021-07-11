@@ -3,8 +3,7 @@ import Competition from '../../components/Competition/Competition'
 import NavigationDateBar from "../../components/NavigationDateBar/NavigationDateBar";
 
 
-
-function ResultsPage(props) {
+function ResultsPage({competitions, error, loading}) {
 
     return (
 
@@ -14,24 +13,24 @@ function ResultsPage(props) {
             <NavigationDateBar/>
 
 
-            {props.competitions ? (
+            {competitions ? (
                 <>
-                    {props.competitions.map((competition) => {
+                    {competitions.map((competition) => {
                         return <Competition
-                                    key={competition.id}
-                                    status={"FINISHED"}
-                                    competitionID={competition.id}
-                                    countryName={competition.area.name}
+                            key={competition.id}
+                            status={'FINISHED'}
+                            competitionID={competition.id}
+                            countryName={competition.area.name}
                         />
 
                     })}
                 </>
 
-            ) : props.error ? (
+            ) : error ? (
 
                 <p>Er is iets misgegaan met het ophalen van de data.</p>
 
-            ) : props.loading && (
+            ) : loading && (
 
                 <p>Loading....</p>
 

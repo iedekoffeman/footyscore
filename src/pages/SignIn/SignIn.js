@@ -1,14 +1,15 @@
 import React, {useContext, useState} from 'react';
-import  {useForm}  from 'react-hook-form'
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import {useForm} from 'react-hook-form'
+import {Link} from 'react-router-dom';
 import {authContext} from '../../contexts/AuthContext'
-import ColoredLine from "../../components/ColoredLine/ColoredLine";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import axios from 'axios';
+import ColoredLine from '../../components/ColoredLine/ColoredLine';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 
 function SignIn() {
-    const { handleSubmit, formState: {errors}, register } = useForm({mode: 'onBlur'});
+
+    const {handleSubmit, formState: {errors}, register} = useForm({mode: 'onBlur'});
     const {login} = useContext(authContext);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -19,24 +20,24 @@ function SignIn() {
         try {
 
             console.log(data);
-            const response = await axios.post("https://polar-lake-14365.herokuapp.com/api/auth/signin",
+            const response = await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signin',
 
                 {
                     username: data.username,
                     password: data.password,
                 }, {
                     headers: {
-                        "Content-Type": "application/json",
+                        'Content-Type': 'application/json',
                     }
                 });
             console.log(response.data.accessToken);
             login(response.data.accessToken);
 
-        } catch(error) {
+        } catch (error) {
 
             console.log("Error?", error.response.data);
 
-            error.response.data.status === 401 ? setError("Username or password is not correct") : setError(error.response.data.error);
+            error.response.data.status === 401 ? setError('Username or password is not correct') : setError(error.response.data.error);
 
         }
 
@@ -47,73 +48,73 @@ function SignIn() {
     return (
         <>
             <h2>Sign in</h2>
-            <ColoredLine />
+            <ColoredLine/>
 
-            {loading && <p className="loading">Signing in.. one moment please</p>}
+            {loading && <p className='loading'>Signing in.. one moment please</p>}
             {!loading &&
-                <>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <label htmlFor="username-field">
-                            <input
-                                type="text"
-                                id="username-field"
-                                name="username"
-                                placeholder="Username"
-                                {...register("username", {
+            <>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <label htmlFor='username-field'>
+                        <input
+                            type='text'
+                            id='username-field'
+                            name='username'
+                            placeholder='Username'
+                            {...register('username', {
 
-                                    required: {
-                                        value: true,
-                                        message: "This field is required",
-                                    },
-                                    minLength:  {
-                                        value: 6,
-                                        message: "A username must contain at least 6 characters",
-                                    }
+                                required: {
+                                    value: true,
+                                    message: 'This field is required',
+                                },
+                                minLength: {
+                                    value: 6,
+                                    message: 'A username must contain at least 6 characters',
+                                }
 
-                                })}
-                            />
+                            })}
+                        />
 
-                            {errors.username && <ErrorMessage message={errors.username.message}/>}
+                        {errors.username && <ErrorMessage message={errors.username.message}/>}
 
-                        </label>
+                    </label>
 
-                        <label htmlFor="password-field">
-                            <input
-                                type="password"
-                                id="password-field"
-                                name="password"
-                                placeholder="Password"
-                                {...register("password", {
+                    <label htmlFor='password-field'>
+                        <input
+                            type='password'
+                            id='password-field'
+                            name='password'
+                            placeholder='Password'
+                            {...register('password', {
 
-                                    required: {
-                                        value: true,
-                                        message: "This field is required",
-                                    },
-                                    minLength:  {
-                                        value: 6,
-                                        message: "A password must contain at least 6 characters",
-                                    }
+                                required: {
+                                    value: true,
+                                    message: 'This field is required',
+                                },
+                                minLength: {
+                                    value: 6,
+                                    message: 'A password must contain at least 6 characters',
+                                }
 
 
-                                })}
-                            />
+                            })}
+                        />
 
-                            {errors.password && <ErrorMessage message={errors.password.message}/>}
+                        {errors.password && <ErrorMessage message={errors.password.message}/>}
 
-                        </label>
+                    </label>
 
-                        {error && <ErrorMessage message={error} />}
+                    {error && <ErrorMessage message={error}/>}
 
-                        <button
-                            type="submit"
-                            className="form-button"
-                            disabled={loading}
-                        >
-                            Sign in
-                        </button>
-                    </form>
-                        <p className="form-link">No account yet? <Link to="/signup">Sign-up</Link> Here.</p>
-                </>
+                    <button
+                        type='submit'
+                        className='form-button'
+                        disabled={loading}
+                    >
+                        Sign in
+                    </button>
+                </form>
+                <p className='form-link'>No account yet? <Link to='/signup'>Sign-up</Link> Here.</p>
+            </>
             }
         </>
     );

@@ -1,38 +1,40 @@
 import { useState, useEffect, createContext } from 'react';
+import { useHistory } from 'react-router-dom'
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
-import {useHistory} from 'react-router-dom'
+
 
 export const authContext = createContext({});
 
-function AuthContextProvider(props) {
+function AuthContextProvider({children}) {
 
     const history = useHistory();
-    const [authState, setAuthState] = useState({user: null, status: "pending"});
+    const [error, setError] = useState('');
+    const [authState, setAuthState] = useState({user: null, status: 'pending'});
 
     useEffect(() => {
 
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem('token');
         console.log("token", token);
         if (token) {
             console.log("tok", token);
             login(token);
         } else {
-            setAuthState({user: null, status: "done"});
-            history.push("/");
+            setAuthState({user: null, status: 'done'});
+            history.push('/');
         }
 
         },  []);
 
     async function getUserData() {
 
-        setAuthState({user: null, status: "pending"});
+        setAuthState({user: null, status: 'pending'  });
         console.log("Data van gebruiker", data);
 
         const token = localStorage.getItem('token');
 
         try {
-            const response = await axios.get("https://polar-lake-14365.herokuapp.com/api/user", {
+            const response = await axios.get('https://polar-lake-14365.herokuapp.com/api/user', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -43,6 +45,7 @@ function AuthContextProvider(props) {
 
         } catch (error) {
             console.log("ERROR?", error);
+            setError(error);
         }
 
 
@@ -72,8 +75,9 @@ function AuthContextProvider(props) {
 
         <authContext.Provider value={data}>
             {/* Rest of app*/}
-            {authState.status === "pending" & <h1>Fetching data, hold on</h1>}
-            { authState.status === "done" && props.children}
+            { authState.status === "pending" & <h1>Fetching data, hold on</h1>}
+            { authState.status === "done" && children}
+            { error && <p>Er is iets misgegaan met inloggen op de server</p>}
         </authContext.Provider>
     );
 }

@@ -1,20 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {
-    NavLink,
-} from 'react-router-dom';
-import {
-    format,
-    addWeeks,
-    subWeeks,
-    isSameDay,
-
-} from 'date-fns'
+import {NavLink} from 'react-router-dom';
+import {format, addWeeks, subWeeks, isSameDay} from 'date-fns'
 import getWeekDayArray from "../../helpers/getWeekDayArray";
 import getDateFormat from "../../helpers/getDateFormat";
+import styles from './NavigationDateBar.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
-import styles from './NavigationDateBar.module.css';
 
 
 function NavigationDateBar() {
@@ -73,14 +65,14 @@ function NavigationDateBar() {
                     const dayFormatted = getDateFormat(day);
 
                     return <li key={day}>
-                                <NavLink
-                                    to={`/results/${dayFormatted}`}
-                                    className={styles['date-bar']}
-                                    activeClassName={styles['date-bar-active']}
-                                >
-                                    {format(day, `MMM dd`)}
-                                </NavLink>
-                            </li>
+                        <NavLink
+                            to={`/results/${dayFormatted}`}
+                            className={styles['date-bar']}
+                            activeClassName={styles['date-bar-active']}
+                        >
+                            {format(day, `MMM dd`)}
+                        </NavLink>
+                    </li>
 
                 })) : (
 

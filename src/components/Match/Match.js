@@ -1,31 +1,41 @@
 import styles from './Match.module.css';
-import getClassNameResult from "../../helpers/getClassNameResult";
+import getClassNameResult from '../../helpers/getClassNameResult';
 
-function Match(props) {
+function Match({match, competitionName}) {
 
-    const homeTeamScore = props.match.score.fullTime.homeTeam;
-    const awayTeamScore = props.match.score.fullTime.awayTeam;
+    const homeTeam = match.homeTeam.name;
+    const awayTeam = match.awayTeam.name;
+    const homeTeamScore = match.score.fullTime.homeTeam;
+    const awayTeamScore = match.score.fullTime.awayTeam;
 
     return (
         <>
             {
-                props.match ? (
+                match ? (
 
 
                     <section className={styles.match}>
                         <section className={styles.team}>
-                            <p className={styles['home-team']}>{props.match.homeTeam.name}</p>
-                            <p className={styles['away-team']}>{props.match.awayTeam.name}</p>
+                            <p className={styles['home-team']}>
+                                {homeTeam}
+                            </p>
+                            <p className={styles['away-team']}>
+                                {awayTeam}
+                            </p>
                         </section>
                         <section className={styles.score}>
-                            <p className={`${styles['home-team-score']} ${styles[getClassNameResult(homeTeamScore, awayTeamScore)]}`}>{props.match.score.fullTime.homeTeam}</p>
-                            <p className={`${styles['away-team-score']} ${styles[getClassNameResult(awayTeamScore, homeTeamScore)]}`}>{props.match.score.fullTime.awayTeam}</p>
+                            <p className={`${styles['home-team-score']} ${styles[getClassNameResult(homeTeamScore, awayTeamScore)]}`}>
+                                {homeTeamScore}
+                            </p>
+                            <p className={`${styles['away-team-score']} ${styles[getClassNameResult(awayTeamScore, homeTeamScore)]}`}>
+                                {awayTeamScore}
+                            </p>
                         </section>
                         <section className={styles['match-info-options']}>
-                            <p className={styles['competition-name']}>{props.competitionName}</p>
+                            <p className={styles['competition-name']}>
+                                {competitionName}</p>
                         </section>
                     </section>
-
 
                 ) : (
 

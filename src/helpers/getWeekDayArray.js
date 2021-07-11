@@ -1,4 +1,4 @@
-import {addDays, startOfWeek} from "date-fns";
+import {addDays, startOfWeek} from 'date-fns';
 
 function getWeekDayArray(date) {
 

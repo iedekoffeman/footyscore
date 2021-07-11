@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
-import axios from 'axios';
 import {useHistory} from 'react-router-dom'
+import axios from 'axios';
 import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import ColoredLine from "../../components/ColoredLine/ColoredLine";
 
 
-
 function SignUp() {
+
     const history = useHistory();
     const {register, handleSubmit, formState: {errors}} = useForm({mode: 'onBlur'});
     const [succes, setSucces] = useState(false);
@@ -21,7 +21,7 @@ function SignUp() {
 
         try {
             setLoading(true);
-            const response = await axios.post("https://polar-lake-14365.herokuapp.com/api/auth/signup",
+            const response = await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signup',
 
                 {
                     username: data.username,
@@ -30,7 +30,7 @@ function SignUp() {
                     role: ["user"]
                 }, {
                     headers: {
-                        "Content-Type": "application/json",
+                        'Content-Type': 'application/json',
                     }
                 });
             console.log(response);
@@ -48,99 +48,99 @@ function SignUp() {
     return (
         <>
             <h2>Sign up</h2>
-            <ColoredLine />
-            {succes && <SuccessMessage message={"Your account registration was successfully submitted"}/>}
-            {loading && <p className="loading">Loading.. one moment please</p>}
+            <ColoredLine/>
+            {succes && <SuccessMessage message={'Your account registration was successfully submitted'}/>}
+            {loading && <p className='loading'>Loading.. one moment please</p>}
 
             {!succes &&
 
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <label htmlFor="email-field">
-                        <input
-                            type="email"
-                            id="email-field"
-                            name="email"
-                            placeholder="Email address"
-                            {...register("email", {
-                                required: {
-                                    value: true,
-                                    message: "This field is required",
-                                },
-                                pattern: {
-                                    value: /^\S+@\S+$/i ,
-                                    message: "Please include an '@' in the email addresss",
-                                }
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <label htmlFor='email-field'>
+                    <input
+                        type='email'
+                        id='email-field'
+                        name='email'
+                        placeholder='Email address'
+                        {...register('email', {
+                            required: {
+                                value: true,
+                                message: 'This field is required',
+                            },
+                            pattern: {
+                                value: /^\S+@\S+$/i,
+                                message: `Please include an '@' in the email addresss`,
+                            }
 
-                            })}
-                        />
+                        })}
+                    />
 
-                        {errors.email && <ErrorMessage message={errors.email.message}/>}
+                    {errors.email && <ErrorMessage message={errors.email.message}/>}
 
-                    </label>
+                </label>
 
-                    <label htmlFor="username-field">
-                        <input
-                            type="text"
-                            id="username-field"
-                            name="username"
-                            placeholder="Username"
-                            {...register("username", {
+                <label htmlFor='username-field'>
+                    <input
+                        type='text'
+                        id='username-field'
+                        name='username'
+                        placeholder='Username'
+                        {...register('username', {
 
-                                required: {
-                                    value: true,
-                                    message: "This field is required",
-                                },
-                                minLength:  {
-                                    value: 6,
-                                    message: "A username must contain at least 6 characters",
-                                }
+                            required: {
+                                value: true,
+                                message: 'This field is required',
+                            },
+                            minLength: {
+                                value: 6,
+                                message: 'A username must contain at least 6 characters',
+                            }
 
-                            })}
+                        })}
 
-                        />
+                    />
 
-                        {errors.username && <ErrorMessage message={errors.username.message}/>}
+                    {errors.username && <ErrorMessage message={errors.username.message}/>}
 
-                    </label>
+                </label>
 
-                    <label htmlFor="password-field">
-                        <input
-                            type="password"
-                            id="password-field"
-                            name="password"
-                            placeholder="Password"
-                            {...register("password", {
+                <label htmlFor='password-field'>
+                    <input
+                        type='password'
+                        id='password-field'
+                        name='password'
+                        placeholder='Password'
+                        {...register('password', {
 
-                                required: {
-                                    value: true,
-                                    message: "This field is required",
-                                },
-                                minLength:  {
-                                    value: 6,
-                                    message: "A password must contain at least 6 characters",
-                                }
+                            required: {
+                                value: true,
+                                message: 'This field is required',
+                            },
+                            minLength: {
+                                value: 6,
+                                message: 'A password must contain at least 6 characters',
+                            }
 
 
-                            })}
+                        })}
 
-                        />
+                    />
 
-                        {errors.password && <ErrorMessage message={errors.password.message}/>}
+                    {errors.password && <ErrorMessage message={errors.password.message}/>}
 
-                    </label>
+                </label>
 
-                    {error && <ErrorMessage message={error} />}
+                {error && <ErrorMessage message={error}/>}
 
-                    <button
-                        type="submit"
-                        className="form-button"
-                        disabled={loading}
-                    >
-                        Sign up
-                    </button>
-                </form>
+                <button
+                    type='submit'
+                    className='form-button'
+                    disabled={loading}
+                >
+                    Sign up
+                </button>
+            </form>
             }
-            <p className="form-link">Sign in  <Link to="/signin">here</Link></p>
+            <p className='form-link'>Sign in <Link to='/signin'>here</Link></p>
 
         </>
     );

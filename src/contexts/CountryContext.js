@@ -2,7 +2,7 @@ import { useState, createContext } from 'react';
 
 export const CountryContext = createContext({});
 
-function CountryContextProvider(props) {
+function CountryContextProvider({children}) {
 
     const [countryArray, setCountryArray] = useState([
         {
@@ -49,7 +49,7 @@ function CountryContextProvider(props) {
 
         <CountryContext.Provider value={data}>
             {/* Rest of app*/}
-            {props.children}
+            {children}
         </CountryContext.Provider>
     );
 }

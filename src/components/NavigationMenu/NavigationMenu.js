@@ -1,21 +1,21 @@
 import {useState} from 'react';
-import {NavLink} from "react-router-dom";
-import { authContext} from "../../contexts/AuthContext";
-import getDateFormat from "../../helpers/getDateFormat";
+import {NavLink} from 'react-router-dom';
+import {useContext} from 'react';
+import {authContext} from '../../contexts/AuthContext';
+import getDateFormat from '../../helpers/getDateFormat';
 import styles from './NavigationMenu.module.css';
-import {useContext} from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faBars} from '@fortawesome/free-solid-svg-icons'
 
 
-function NavigationMenu(props) {
+function NavigationMenu({pathname}) {
 
-    console.log(props.pathname);
+    console.log(pathname);
     const {
         authState: {user},
 
     } = useContext(authContext);
-    const[isActive, setActive] = useState(false);
+    const [isActive, setActive] = useState(false);
 
     function toggleClass() {
         setActive(!isActive);
@@ -26,51 +26,56 @@ function NavigationMenu(props) {
         <nav>
             <button
                 className={styles.hamburger}
-                onClick={() => toggleClass()}
+                onClick={() =>
+                    toggleClass()
+                }
             >
-                <FontAwesomeIcon icon={faBars}/>
+                <FontAwesomeIcon
+                    icon={faBars}
+                />
             </button>
             <ul className={` ${styles.topnav} ${styles[isActive ? 'responsive' : null]}`}>
 
-                <li key={"results"}>
+                <li key={'results'}>
                     <NavLink
                         to={`/results/${getDateFormat(new Date())}`}
                         className={styles['main-nav']}
                         //class .active for isActive can be found in app.css
-                        isActive={() => ['results'].includes(props.pathname.split('/')[1])}
-                        onClick={() => toggleClass}
+                        isActive={() => ['results'].includes(pathname.split('/')[1])}
+                        onClick={() => toggleClass()}
                     >
                         Results
 
                     </NavLink>
                 </li>
-                {user &&
-                    <>
-                        <li key={"favorites"}>
-                            <NavLink
-                                to={"/favorites"}
-                                className={styles['main-nav']}
-                                activeClassName={styles['main-nav-active']}
-                                onClick={() => toggleClass()}
-                            >
-                                Favorites
 
-                            </NavLink>
-                        </li>
-                            <li key={"live-scores"}>
-                            <NavLink
-                            to={"/live-scores"}
+                {user &&
+                <>
+                    <li key={'favorites'}>
+                        <NavLink
+                            to={'/favorites'}
                             className={styles['main-nav']}
                             activeClassName={styles['main-nav-active']}
                             onClick={() => toggleClass()}
-                            >
+                        >
+                            Favorites
+
+                        </NavLink>
+                    </li>
+                    <li key={'live-scores'}>
+                        <NavLink
+                            to={'/live-scores'}
+                            className={styles['main-nav']}
+                            activeClassName={styles['main-nav-active']}
+                            onClick={() => toggleClass()}
+                        >
 
                             Live scores
 
-                            </NavLink>
-                        </li>
-                    </>
-                 }
+                        </NavLink>
+                    </li>
+                </>
+                }
             </ul>
 
         </nav>

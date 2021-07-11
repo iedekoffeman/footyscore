@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from "react-router-dom";
-import AuthContextProvider from "./contexts/AuthContext";
-import CountryContextProvider from "./contexts/CountryContext";
+import AuthContextProvider from './contexts/AuthContext';
+import CountryContextProvider from './contexts/CountryContext';
 
 ReactDOM.render(
     <React.StrictMode>

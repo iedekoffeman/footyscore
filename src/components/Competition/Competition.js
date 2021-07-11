@@ -1,14 +1,13 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {useParams} from 'react-router-dom';
-import axios from "axios";
+import axios from 'axios';
 import * as rax from 'retry-axios';
-import getDateFormat from "../../helpers/getDateFormat";
+import {CountryContext} from '../../contexts/CountryContext';
+import getCountryCode from '../../helpers/getCountryCode';
+import getDateFormat from '../../helpers/getDateFormat';
 import Match from '../Match/Match'
 import styles from './Competition.module.css';
 import Flag from 'react-world-flags'
-import { CountryContext} from "../../contexts/CountryContext";
-import getCountryCode from "../../helpers/getCountryCode";
-
 
 const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 
@@ -18,7 +17,7 @@ function Competition({competitionID, status, countryName}) {
         countryArray
 
     } = useContext(CountryContext);
-    console.log("context", countryArray);
+    console.log('context', countryArray);
 
     const [matchData, setMatchData] = useState(null);
     const {fromToDate = `${getDateFormat(new Date())}`} = useParams();
@@ -26,7 +25,7 @@ function Competition({competitionID, status, countryName}) {
     const [loading, toggleLoading] = useState();
 
 
-    console.log("date in competition", fromToDate)
+    console.log('date in competition', fromToDate)
 
 
     useEffect(() => {
@@ -51,7 +50,7 @@ function Competition({competitionID, status, countryName}) {
                             onRetryAttempt: error => {
                                 const cfg = rax.getConfig(error);
                                 console.log(`Retry attempt #${cfg.currentRetryAttempt}`);
-                                setError("We use a free API, there were too many requests it refreshes automatically after 60 seconds");
+                                setError('We use a free API, there were too many requests it refreshes automatically after 60 seconds');
                             }
                         }
                     });
@@ -72,16 +71,13 @@ function Competition({competitionID, status, countryName}) {
 
         }
 
-          fetchCompetitionMatches();
+        fetchCompetitionMatches();
 
 
     }, [competitionID, fromToDate, status])
 
 
-
-
-    console.log("matchesDD", matchData);
-
+    console.log('matchesDD', matchData);
 
 
     return (
@@ -92,15 +88,21 @@ function Competition({competitionID, status, countryName}) {
                     <article className={styles['competition-content']}>
                         <div className={styles['country-info-wrapper']}>
                             <figure>
-                                 <Flag code={getCountryCode(countryArray, countryName)} height="16" fallback={ <span>flag</span> }/>
+                                <Flag code={getCountryCode(countryArray, countryName)}
+                                      height='16'
+                                      fallback={<span>flag</span>}
+                                />
                             </figure>
-                            <p  className={styles.country}>{countryName}</p>
+                            <p className={styles.country}>{countryName}</p>
                         </div>
                         {matchData.matches.map((match) => {
                                 console.log('Match', match)
-                                return <Match key={match.id} matchID={match.id} match={match}
-                                              competitionName={match.competition.name}/>
-
+                                return <Match
+                                    key={match.id}
+                                    matchID={match.id}
+                                    match={match}
+                                    competitionName={match.competition.name}
+                                />
 
                             }
                         )}
@@ -112,7 +114,8 @@ function Competition({competitionID, status, countryName}) {
                         <p>{error}</p>
 
                     </>
-                ) : matchData && !matchData.matches.length && !error  ? (
+
+                ) : matchData && !matchData.matches.length && !error ? (
 
                     <p>No games for {countryName}</p>
 

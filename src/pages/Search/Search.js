@@ -1,18 +1,19 @@
 import React, {useEffect, useState, useContext} from 'react';
-import { authContext} from "../../contexts/AuthContext";
-import Autocomplete from "../../components/Autocomplete/Autocomplete";
-import Competition from "../../components/Competition/Competition";
+import {Link} from 'react-router-dom';
+import {authContext} from '../../contexts/AuthContext';
+import {CountryContext} from '../../contexts/CountryContext';
+import Autocomplete from '../../components/Autocomplete/Autocomplete';
+import Competition from '../../components/Competition/Competition';
+import ColoredLine from '../../components/ColoredLine/ColoredLine';
 import styles from './Search.module.css';
-import { CountryContext} from "../../contexts/CountryContext";
-import ColoredLine from "../../components/ColoredLine/ColoredLine";
-import {Link} from "react-router-dom";
 
 
-function SearchPage(props) {
-    const competitionData = props.competitions;
+function SearchPage({competitions, error, loading}) {
+
+    const competitionData = competitions;
     const [userInput, setUserInput] = useState("")
     const [competition, setCompetition] = useState()
-    const [inputSubmitted, toggleInputSubmitted] = useState(false)
+    const [inputSubmit, toggleInputSubmit] = useState(false)
     const {
         authState: {user},
 
@@ -23,26 +24,25 @@ function SearchPage(props) {
     } = useContext(CountryContext);
     console.log("context", countryArray);
 
-    const suggestions =  countryArray;
+    const suggestions = countryArray;
     console.log("what is comp data", competitionData)
     useEffect(() => {
 
-        if(inputSubmitted && competitionData) {
-            const userInputCompID = suggestions.find( ({ country }) => country === userInput );
+        if (inputSubmit && competitionData) {
+            const userInputCompID = suggestions.find(({country}) => country === userInput);
             console.log("test", userInputCompID.id)
             //competitionData.find( ({id}) => competitionData.id === userInputCompID.id))
-            const comp = competitionData.find(({id}) => id === userInputCompID.id )
+            const comp = competitionData.find(({id}) => id === userInputCompID.id)
             console.log("what is competition", comp)
 
-                setCompetition(comp)
-                toggleInputSubmitted(false)
-
+            setCompetition(comp)
+            toggleInputSubmit(false)
 
 
         }
 
 
-    }, [inputSubmitted, competitionData]);
+    }, [inputSubmit, competitionData]);
 
 
     return (
@@ -53,36 +53,38 @@ function SearchPage(props) {
             {user ? (
                 <>
                     <Autocomplete suggestions={suggestions} userInput={userInput} setUserInput={setUserInput}
-                                  toggleSubmitted={toggleInputSubmitted}/>
-                    <p className={styles['search-p']}>The search query applies to matches played at this moment (live)</p>
-                    <p className={styles['search-p-last']}>For now, available options are Euro 2020, England, France, Italy, Holland, spain and Germany</p>
-                    <ColoredLine />
+                                  toggleSubmit={toggleInputSubmit}/>
+                    <p className={styles['search-p']}>The search query applies to matches played at this moment
+                        (live)</p>
+                    <p className={styles['search-p-last']}>For now, available options are Euro 2020, England, France,
+                        Italy, Holland, spain and Germany</p>
+                    <ColoredLine/>
 
                 </>
 
-                ) : (
+            ) : (
 
-                    <p>You are not signed in, sign in <Link to="/signin">here</Link></p>
-                )
+                <p>You are not signed in, sign in <Link to='/signin'>here</Link></p>
+            )
             }
 
             {competition ? (
                 <>
 
-                <Competition key={competition.id} status={"LIVE"} competitionID={competition.id}
-                countryName={competition.area.name}/>
+                    <Competition key={competition.id} status={'LIVE'} competitionID={competition.id}
+                                 countryName={competition.area.name}/>
 
                 </>
 
-                ) : props.error ? (
+            ) : error ? (
 
                 <p>Er is iets misgegaan met het ophalen van de data.</p>
 
-                ) : props.loading && (
+            ) : loading && (
 
                 <p>Loading....</p>
 
-                )}
+            )}
 
         </>
     )

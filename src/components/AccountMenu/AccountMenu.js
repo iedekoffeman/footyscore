@@ -1,14 +1,15 @@
-import {useContext} from 'react'
+import { useContext } from 'react'
+import { NavLink } from 'react-router-dom';
+import { authContext } from '../../contexts/AuthContext';
 import styles from './AccountMenu.module.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faSignInAlt} from '@fortawesome/free-solid-svg-icons'
-import {faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
-import {faIdCardAlt} from '@fortawesome/free-solid-svg-icons'
-import {faUserPlus} from '@fortawesome/free-solid-svg-icons'
-import {NavLink} from "react-router-dom";
-import {authContext} from "../../contexts/AuthContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import { faIdCardAlt } from '@fortawesome/free-solid-svg-icons'
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 
-function AccountMenu(props) {
+
+function AccountMenu({show}) {
 
     const {
         logout,
@@ -17,69 +18,78 @@ function AccountMenu(props) {
     } = useContext(authContext);
 
     return (
-            <div className={`${styles['account-menu']} ${styles[!props.show ? 'hide' : null]}`} >
-                <ul>
-                    {!user ? (
-                        <>
-                            <li key={"sign-in"}>
-                                <NavLink
-                                    to={`/signin`}
-                                    className={styles['account-nav']}
-                                    activeClassName={styles['account-nav-active']}
-                                >
-                                    <FontAwesomeIcon icon={faSignInAlt} className={styles['account-icon']} />
+        <div className={`${styles['account-menu']} ${styles[!show ? 'hide' : null]}`}>
+            <ul>
+                {!user ? (
+                    <>
+                        <li key={'sign-in'}>
+                            <NavLink
+                                to={`/signin`}
+                                className={styles['account-nav']}
+                                activeClassName={styles['account-nav-active']}
+                            >
+                                <FontAwesomeIcon icon={faSignInAlt} className={styles['account-icon']}/>
 
-                                    sign-in
+                                sign-in
 
-                                </NavLink>
-                            </li>
+                            </NavLink>
+                        </li>
 
-                            <li key={"sign-up"}>
-                                <NavLink
-                                    to={`/signup`}
-                                    className={styles['account-nav']}
-                                    activeClassName={styles['account-nav-active']}
-                                >
-                                    <FontAwesomeIcon icon={faUserPlus} className={styles['account-icon']} />
+                        <li key={'sign-up'}>
+                            <NavLink
+                                to={'/signup'}
+                                className={styles['account-nav']}
+                                activeClassName={styles['account-nav-active']}
+                            >
+                                <FontAwesomeIcon
+                                    icon={faUserPlus}
+                                    className={styles['account-icon']}
+                                />
 
-                                    sign-up
+                                sign-up
 
-                                </NavLink>
-                            </li>
-                        </>
-                    ) : (
-                        <>
-                            <li key={"sign-out"}>
-                                <NavLink
-                                    to={'/signout'}
-                                     className={styles['account-nav']}
-                                    activeClassName={styles['account-nav-active']}
-                                     onClick={logout}
-                                >
-                                    <FontAwesomeIcon icon={faSignOutAlt} className={styles['account-icon']} />
+                            </NavLink>
+                        </li>
+                    </>
+                ) : (
+                    <>
+                        <li key={'sign-out'}>
+                            <NavLink
+                                to={'/signout'}
+                                className={styles['account-nav']}
+                                activeClassName={styles['account-nav-active']}
+                                onClick={logout}
+                            >
+                                <FontAwesomeIcon
+                                    icon={faSignOutAlt}
+                                    className={styles['account-icon']}
+                                />
 
-                                    sign-out
+                                sign-out
 
-                                </NavLink>
-                            </li>
+                            </NavLink>
+                        </li>
 
-                            <li key={"my-profile"}>
-                                <NavLink
-                                    to={`/myprofile`}
-                                     className={styles['account-nav']}
-                                    activeClassName={styles['account-nav-active']}
-                                >
+                        <li key={'my-profile'}>
+                            <NavLink
+                                to={'/myprofile'}
+                                className={styles['account-nav']}
+                                activeClassName={styles['account-nav-active']}
+                            >
 
-                                    <FontAwesomeIcon icon={faIdCardAlt } className={styles['account-icon']} />
+                                <FontAwesomeIcon
+                                    icon={faIdCardAlt}
+                                    className={styles['account-icon']}
+                                />
 
-                                    My Profile
+                                My Profile
 
-                                </NavLink>
-                            </li>
-                        </>
-                    )}
-                </ul>
-            </div>
+                            </NavLink>
+                        </li>
+                    </>
+                )}
+            </ul>
+        </div>
 
     )
 }

@@ -1,8 +1,9 @@
 import styles from './SuccessMessage.module.css';
-import {faCheckCircle} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faCheckCircle} from '@fortawesome/free-solid-svg-icons'
 
-function SuccessMessage(props) {
+
+function SuccessMessage({message}) {
 
 
     return (
@@ -14,7 +15,7 @@ function SuccessMessage(props) {
                 className={styles.CheckCircle}
             />
 
-            {props.message}
+            {message}
 
         </p>
     )
