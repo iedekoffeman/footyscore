@@ -1,5 +1,5 @@
 .main-nav {
-    color: white;
+    color: #FFFFFF;
     text-decoration: none;
 }
 
@@ -17,9 +17,11 @@
     list-style: none;
     padding: 0;
 }
+
 .topnav li {
     display: none;
 }
+
 .hamburger {
     display: block;
     background: none;
@@ -29,44 +31,52 @@
     right: 110px;
     font-size: 1.5em;
 }
+
 .hamburger:hover, .hamburger:active {
     color: var(--secondary-text-color);
 }
+
 .responsive {
     flex-direction: column;
     position: absolute;
     top: 58px;
     left: 0;
-    background: black;
+    background: #000000;
     width: 100%;
 }
+
 .responsive li {
     display: block;
     padding: 20px;
     text-align: left;
     margin: 0;
 }
+
 header a {
     font-size: 1.3em;
     padding: 0 10px;
 }
+
 @media only screen and (min-width: 1200px) {
 
     .topnav {
         flex-direction: row;
         position: absolute;
-        top:  10px;
+        top: 10px;
         left: 387px;
         width: 400px;
     }
+
     .topnav li {
         display: block;
         padding: 0;
         text-align: left;
     }
+
     nav ul li a, header a {
         font-size: 1.5em;
     }
+
     .hamburger {
         display: none;
     }

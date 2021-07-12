@@ -52,23 +52,29 @@ body > * {
     color: var(--secondary-text-color);
     font-size: 1.2em;
 }
+
 header li .active {
     color: var(--secondary-text-color);
 }
-.menu-buttons  {
+
+.menu-buttons {
     margin-left: auto;
 }
+
 .menu-buttons button {
     background: none;
     border: none;
     font-size: 1.5em;
 }
+
 .account {
     margin-right: 30px;
 }
+
 .click:hover {
     color: var(--secondary-text-color);
 }
+
 .sidebar-left, .sidebar-right {
     display: none;
 }
@@ -85,14 +91,16 @@ header li .active {
     display: flex;
     flex-direction: column;
     padding: 80px 0;
-    background-color: white;
+    background-color: #FFFFFF;
 }
+
 footer {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 }
+
 footer p {
     flex-grow: 2;
     color: var(--secondary-text-color);
@@ -105,6 +113,7 @@ h2 {
 
 
 }
+
 form {
     display: flex;
     flex-direction: column;
@@ -112,9 +121,11 @@ form {
     padding: 32px;
     margin-left: 12px;
 }
+
 form input {
     margin-bottom: 20px;
 }
+
 .form-button {
     border-radius: 10px;
     border: 1px solid var(--secondary-text-color);
@@ -124,14 +135,17 @@ form input {
     color: var(--secondary-text-color);
     font-size: 1em;
 }
+
 .form-button:hover {
     background-color: var(--secondary-text-color);
     color: #FFFFFF;
 }
+
 .form-link {
     text-align: left;
     margin-left: 46px;
 }
+
 @media only screen and (min-width: 1200px) {
     .flexbox-wrapper {
         flex-flow: row wrap;

@@ -7,7 +7,7 @@
     right: 14px;
     height: 150px;
     width: 200px;
-    background: white;
+    background: #FFFFFF;
 }
 
 .account-menu ul {
@@ -20,7 +20,7 @@
 }
 
 .account-nav {
-    color: black;
+    color: #000000;
     font-size: 0.7em;
 }
 
