@@ -1,5 +1,5 @@
 import React from 'react';
-import Competition from '../../components/Competition/Competition'
+import Competition from '../../components/Competition/Competition';
 import NavigationDateBar from "../../components/NavigationDateBar/NavigationDateBar";
 
 

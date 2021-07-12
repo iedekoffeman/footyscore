@@ -1,30 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import {NavLink} from 'react-router-dom';
-import {format, addWeeks, subWeeks, isSameDay} from 'date-fns'
+import {format, addWeeks, subWeeks, isSameDay} from 'date-fns';
 import getWeekDayArray from "../../helpers/getWeekDayArray";
 import getDateFormat from "../../helpers/getDateFormat";
 import styles from './NavigationDateBar.module.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
-import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 
 
 function NavigationDateBar() {
 
-    const [date, setDate] = useState(null)
-    const [weekArray, setWeekArray] = useState([])
-    const [disabledChevronLeft, setDisabledChevronLeft] = useState(false)
-    const [disabledChevronRight, setDisabledChevronRight] = useState(false)
+    const [date, setDate] = useState(null);
+    const [weekArray, setWeekArray] = useState([]);
+    const [disabledChevronLeft, setDisabledChevronLeft] = useState(false);
+    const [disabledChevronRight, setDisabledChevronRight] = useState(false);
 
     useEffect(() => {
 
-        setWeekArray(getWeekDayArray(date))
+        setWeekArray(getWeekDayArray(date));
 
     }, [date]);
 
     useEffect(() => {
 
-        enableOrDisableChevron(weekArray)
+        enableOrDisableChevron(weekArray);
 
     }, [weekArray]);
 
@@ -39,8 +39,8 @@ function NavigationDateBar() {
             element => element < new Date(2020, 12, 1)
         );
 
-        isDayOfWeekNow ? setDisabledChevronRight(true) : setDisabledChevronRight(false)
-        isDayOfWeekBeforeJanuary2021 ? setDisabledChevronLeft(true) : setDisabledChevronLeft(false)
+        isDayOfWeekNow ? setDisabledChevronRight(true) : setDisabledChevronRight(false);
+        isDayOfWeekBeforeJanuary2021 ? setDisabledChevronLeft(true) : setDisabledChevronLeft(false);
 
     }
 

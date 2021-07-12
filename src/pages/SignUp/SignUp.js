@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
-import {useHistory} from 'react-router-dom'
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 import SuccessMessage from "../../components/SuccessMessage/SuccessMessage";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
@@ -17,11 +17,11 @@ function SignUp() {
     const [loading, setLoading] = useState(false);
 
     async function onSubmit(data) {
-        console.log("Data van gebruiker", data);
 
         try {
             setLoading(true);
-            const response = await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signup',
+
+             await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signup',
 
                 {
                     username: data.username,
@@ -33,11 +33,12 @@ function SignUp() {
                         'Content-Type': 'application/json',
                     }
                 });
-            console.log(response);
+
             setSucces(true);
             setTimeout(() => history.push('/signin'), 2000);
+
         } catch (error) {
-            console.log("ERROR?", error.response.data);
+
             setError(error.response.data.message);
         }
 

@@ -11,9 +11,9 @@ import styles from './Search.module.css';
 function SearchPage({competitions, error, loading}) {
 
     const competitionData = competitions;
-    const [userInput, setUserInput] = useState("")
-    const [competition, setCompetition] = useState()
-    const [inputSubmit, toggleInputSubmit] = useState(false)
+    const [userInput, setUserInput] = useState("");
+    const [competition, setCompetition] = useState();
+    const [inputSubmit, toggleInputSubmit] = useState(false);
     const {
         authState: {user},
 
@@ -22,21 +22,19 @@ function SearchPage({competitions, error, loading}) {
         countryArray
 
     } = useContext(CountryContext);
-    console.log("context", countryArray);
 
     const suggestions = countryArray;
-    console.log("what is comp data", competitionData)
+
     useEffect(() => {
 
         if (inputSubmit && competitionData) {
-            const userInputCompID = suggestions.find(({country}) => country === userInput);
-            console.log("test", userInputCompID.id)
-            //competitionData.find( ({id}) => competitionData.id === userInputCompID.id))
-            const comp = competitionData.find(({id}) => id === userInputCompID.id)
-            console.log("what is competition", comp)
 
-            setCompetition(comp)
-            toggleInputSubmit(false)
+            const userInputCompID = suggestions.find(({country}) => country === userInput);
+
+            const comp = competitionData.find(({id}) => id === userInputCompID.id);
+
+            setCompetition(comp);
+            toggleInputSubmit(false);
 
 
         }

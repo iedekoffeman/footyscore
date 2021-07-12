@@ -34,15 +34,15 @@ test('The getWeekDayArray receives a date and returns an array of all dates that
             new Date('2021-06-30T22:00:00.000Z'),
             new Date('2021-07-01T22:00:00.000Z'),
             new Date('2021-07-02T22:00:00.000Z'),
-            ]
-        );
+        ]
+    );
 
 })
 
 test('The getCountryCode receives an array of countries and a countryName, it returns a countryCode if it finds the countryname', () => {
 
     //Arrange
-    const countryArray =[
+    const countryArray = [
         {
             "id": 2021,
             "country": "England",

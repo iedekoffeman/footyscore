@@ -1,6 +1,6 @@
 import styles from './SuccessMessage.module.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCheckCircle} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 
 
 function SuccessMessage({message}) {

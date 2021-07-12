@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from './Autocomplete.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faSearch} from '@fortawesome/free-solid-svg-icons'
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
 
 function Autocomplete({suggestions, userInput, setUserInput, toggleSubmit}) {
 
@@ -23,10 +23,10 @@ function Autocomplete({suggestions, userInput, setUserInput, toggleSubmit}) {
             })
 
 
-        setActiveSuggestion(0)
-        setFilteredSuggestions(filteredSuggestions)
-        toggleShowSuggestions(true)
-        setUserInput(event.currentTarget.value)
+        setActiveSuggestion(0);
+        setFilteredSuggestions(filteredSuggestions);
+        toggleShowSuggestions(true);
+        setUserInput(event.currentTarget.value);
 
 
     }
@@ -34,10 +34,10 @@ function Autocomplete({suggestions, userInput, setUserInput, toggleSubmit}) {
     //Will be fired when user clicks a suggested value
     function handleOnClick(e) {
 
-        setActiveSuggestion(0)
-        setFilteredSuggestions([])
-        toggleShowSuggestions(false)
-        setUserInput(e.currentTarget.innerText)
+        setActiveSuggestion(0);
+        setFilteredSuggestions([]);
+        toggleShowSuggestions(false);
+        setUserInput(e.currentTarget.innerText);
 
     }
 
@@ -47,9 +47,9 @@ function Autocomplete({suggestions, userInput, setUserInput, toggleSubmit}) {
 
         if (e.keyCode === 13) {
 
-            setActiveSuggestion(0)
-            toggleShowSuggestions(false)
-            setUserInput(filteredSuggestions[activeSuggestion])
+            setActiveSuggestion(0);
+            toggleShowSuggestions(false);
+            setUserInput(filteredSuggestions[activeSuggestion]);
 
         } else if (e.keyCode === 38) {
             if (activeSuggestion === 0) {
@@ -67,13 +67,12 @@ function Autocomplete({suggestions, userInput, setUserInput, toggleSubmit}) {
             if (activeSuggestion - 1 === filteredSuggestions.length) {
                 return;
             }
-            setActiveSuggestion(activeSuggestion + 1)
+            setActiveSuggestion(activeSuggestion + 1);
         }
     }
 
     function handleOnSubmit() {
-        console.log(userInput)
-        toggleSubmit(true)
+        toggleSubmit(true);
     }
 
     return (

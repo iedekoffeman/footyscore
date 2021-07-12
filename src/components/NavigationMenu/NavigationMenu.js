@@ -4,13 +4,12 @@ import {useContext} from 'react';
 import {authContext} from '../../contexts/AuthContext';
 import getDateFormat from '../../helpers/getDateFormat';
 import styles from './NavigationMenu.module.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faBars} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faBars} from '@fortawesome/free-solid-svg-icons';
 
 
 function NavigationMenu({pathname}) {
 
-    console.log(pathname);
     const {
         authState: {user},
 
@@ -40,7 +39,6 @@ function NavigationMenu({pathname}) {
                     <NavLink
                         to={`/results/${getDateFormat(new Date())}`}
                         className={styles['main-nav']}
-                        //class .active for isActive can be found in app.css
                         isActive={() => ['results'].includes(pathname.split('/')[1])}
                         onClick={() => toggleClass()}
                     >

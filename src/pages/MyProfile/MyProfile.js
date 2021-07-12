@@ -10,8 +10,6 @@ function MyProfile() {
         authState: {user},
 
     } = useContext(authContext);
-    console.log("UserInfo", user);
-    console.log("user", user.username);
 
     return (
         <>
@@ -23,15 +21,15 @@ function MyProfile() {
                 <p>You're signed in, see your username and e-mailaddress below:</p>
 
                 <p>
-                    ID: {user && user.id}
+                    <strong>ID:</strong> {user && user.id}
 
                 </p>
                 <p>
-                    username: {user && user.username}
+                    <strong>username:</strong> {user && user.username}
 
                 </p>
                 <p>
-                    E-mail: {user && user.email}
+                    <strong>E-mail:</strong> {user && user.email}
 
                 </p>
 

@@ -5,9 +5,9 @@ import * as rax from 'retry-axios';
 import {CountryContext} from '../../contexts/CountryContext';
 import getCountryCode from '../../helpers/getCountryCode';
 import getDateFormat from '../../helpers/getDateFormat';
-import Match from '../Match/Match'
+import Match from '../Match/Match';
 import styles from './Competition.module.css';
-import Flag from 'react-world-flags'
+import Flag from 'react-world-flags';
 
 const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
 
@@ -17,7 +17,6 @@ function Competition({competitionID, status, countryName}) {
         countryArray
 
     } = useContext(CountryContext);
-    console.log('context', countryArray);
 
     const [matchData, setMatchData] = useState(null);
     const {fromToDate = `${getDateFormat(new Date())}`} = useParams();
@@ -25,12 +24,8 @@ function Competition({competitionID, status, countryName}) {
     const [loading, toggleLoading] = useState();
 
 
-    console.log('date in competition', fromToDate)
-
-
     useEffect(() => {
 
-        //console.log("isDate", isThisADate)
 
         async function fetchCompetitionMatches() {
 
@@ -48,13 +43,12 @@ function Competition({competitionID, status, countryName}) {
                             backoffType: 'static',
                             retryDelay: 60000,
                             onRetryAttempt: error => {
-                                const cfg = rax.getConfig(error);
-                                console.log(`Retry attempt #${cfg.currentRetryAttempt}`);
+                                //const cfg = rax.getConfig(error);
+                                //console.log(`Retry attempt #${cfg.currentRetryAttempt}`);
                                 setError('We use a free API, there were too many requests it refreshes automatically after 60 seconds');
                             }
                         }
                     });
-                console.log('Matches:', result.data);
                 setMatchData(result.data);
                 setError('');
 
@@ -77,9 +71,6 @@ function Competition({competitionID, status, countryName}) {
     }, [competitionID, fromToDate, status])
 
 
-    console.log('matchesDD', matchData);
-
-
     return (
         <>
             {
@@ -96,7 +87,7 @@ function Competition({competitionID, status, countryName}) {
                             <p className={styles.country}>{countryName}</p>
                         </div>
                         {matchData.matches.map((match) => {
-                                console.log('Match', match)
+
                                 return <Match
                                     key={match.id}
                                     matchID={match.id}

@@ -1,5 +1,5 @@
-import { useState, useEffect, createContext } from 'react';
-import { useHistory } from 'react-router-dom'
+import {useState, useEffect, createContext} from 'react';
+import {useHistory} from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 
@@ -15,21 +15,20 @@ function AuthContextProvider({children}) {
     useEffect(() => {
 
         const token = localStorage.getItem('token');
-        console.log("token", token);
+
         if (token) {
-            console.log("tok", token);
+
             login(token);
         } else {
             setAuthState({user: null, status: 'done'});
             history.push('/');
         }
 
-        },  []);
+    }, []);
 
     async function getUserData() {
 
-        setAuthState({user: null, status: 'pending'  });
-        console.log("Data van gebruiker", data);
+        setAuthState({user: null, status: 'pending'});
 
         const token = localStorage.getItem('token');
 
@@ -39,27 +38,22 @@ function AuthContextProvider({children}) {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log(response);
+
             setAuthState({user: response.data, status: "done"});
             history.push('/myprofile');
 
         } catch (error) {
-            console.log("ERROR?", error);
             setError(error);
         }
-
 
 
     }
 
 
-    function login (token) {
-        console.log("Do we have token", token);
+    function login(token) {
         localStorage.setItem('token', token);
-        const dataFromToken = jwt_decode(token);
-        console.log(dataFromToken.sub);
-        const userData =  getUserData();
-        console.log("Do we get data", userData);
+        jwt_decode(token);
+        token && getUserData();
 
     }
 
@@ -69,15 +63,16 @@ function AuthContextProvider({children}) {
         setAuthState({user: null, status: "done"});
 
     }
+
     const data = {authState: authState, login: login, logout: logout};
 
     return (
 
         <authContext.Provider value={data}>
             {/* Rest of app*/}
-            { authState.status === "pending" & <h1>Fetching data, hold on</h1>}
-            { authState.status === "done" && children}
-            { error && <p>Er is iets misgegaan met inloggen op de server</p>}
+            {authState.status === "pending" & <h1>Fetching data, hold on</h1>}
+            {authState.status === "done" && children}
+            {error && <p>Er is iets misgegaan met inloggen op de server</p>}
         </authContext.Provider>
     );
 }

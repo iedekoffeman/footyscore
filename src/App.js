@@ -17,13 +17,13 @@ import SignIn from './pages/SignIn/SignIn';
 import SignUp from './pages/SignUp/SignUp';
 import MyProfile from './pages/MyProfile/MyProfile';
 import AccountMenu from './components/AccountMenu/AccountMenu';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import './App.css';
-import {faFutbol} from '@fortawesome/free-solid-svg-icons'
-import {faUserCircle} from '@fortawesome/free-solid-svg-icons'
-import {faSearch} from '@fortawesome/free-solid-svg-icons'
-import {faCopyright} from '@fortawesome/free-solid-svg-icons'
-import {faEnvelope} from '@fortawesome/free-solid-svg-icons'
+import {faFutbol} from '@fortawesome/free-solid-svg-icons';
+import {faUserCircle} from '@fortawesome/free-solid-svg-icons';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {faCopyright} from '@fortawesome/free-solid-svg-icons';
+import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
 
 
 const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
@@ -56,7 +56,6 @@ function App() {
                             'X-Auth-Token': `${apikey}`,
                         }
                     });
-                console.log(response.data);
 
                 const result = response.data.competitions.filter(response =>
 
@@ -89,9 +88,7 @@ function App() {
 
     }, []);
 
-    console.log('competition', competitionData);
 
-    console.log(['results'].includes(pathname.split('/')[1]));
     return (
 
         <div className='flexbox-wrapper'>
@@ -128,13 +125,7 @@ function App() {
             <aside className='sidebar-left'>Sidebar</aside>
             <main className='main'>
                 <Switch>
-                    <Route exact path='/'>
-                        <Redirect
-                            to={{
-                                pathname: `/results/${getDateFormat(new Date())}`,
-                            }}
-                        />
-                    </Route>
+
                     <Route path='/results/:fromToDate'>
                         <ResultsPage competitions={competitionData} error={error} loading={loading}/>
                     </Route>
@@ -163,8 +154,12 @@ function App() {
                             }}
                         />
                     </Route>
-                    <Route path='/'>
-                        <h1>404 page not found, sorry...</h1>
+                    <Route exact path='/'>
+                        <Redirect
+                            to={{
+                                pathname: `/results/${getDateFormat(new Date())}`,
+                            }}
+                        />
                     </Route>
                 </Switch>
             </main>

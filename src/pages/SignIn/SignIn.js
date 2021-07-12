@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
-import {useForm} from 'react-hook-form'
+import {useForm} from 'react-hook-form';
 import {Link} from 'react-router-dom';
-import {authContext} from '../../contexts/AuthContext'
+import {authContext} from '../../contexts/AuthContext';
 import axios from 'axios';
 import ColoredLine from '../../components/ColoredLine/ColoredLine';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
@@ -16,10 +16,10 @@ function SignIn() {
 
     async function onSubmit(data) {
         setLoading(true);
-        console.log(data);
+
         try {
 
-            console.log(data);
+
             const response = await axios.post('https://polar-lake-14365.herokuapp.com/api/auth/signin',
 
                 {
@@ -30,12 +30,11 @@ function SignIn() {
                         'Content-Type': 'application/json',
                     }
                 });
-            console.log(response.data.accessToken);
+
             login(response.data.accessToken);
 
         } catch (error) {
 
-            console.log("Error?", error.response.data);
 
             error.response.data.status === 401 ? setError('Username or password is not correct') : setError(error.response.data.error);
 
