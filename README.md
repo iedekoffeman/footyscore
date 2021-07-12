@@ -1,6 +1,6 @@
-#FootyScore app
+# FootyScore app
 
-#Inhoudsopgave
+# Inhoudsopgave
 - [1. Inleiding](#1-inleiding)
 - [2. API Key](#2-api-key)
 - [3. De applicatie starten](#3-de-applicatie-starten)
