@@ -26,7 +26,7 @@ import {faCopyright} from '@fortawesome/free-solid-svg-icons';
 import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
 
 
-const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
+const apikey = '';
 
 function App() {
 

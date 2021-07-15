@@ -9,7 +9,7 @@ import Match from '../Match/Match';
 import styles from './Competition.module.css';
 import Flag from 'react-world-flags';
 
-const apikey = 'ddabb8b4425f4870ac199dc2b69b8b57';
+const apikey = '';
 
 function Competition({competitionID, status, countryName}) {
 
