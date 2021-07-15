@@ -42,7 +42,7 @@ function Competition({competitionID, status, countryName}) {
                             statusCodesToRetry: [[429, 429]],
                             backoffType: 'static',
                             retryDelay: 60000,
-                            onRetryAttempt: error => {
+                            onRetryAttempt: () => {
                                 //const cfg = rax.getConfig(error);
                                 //console.log(`Retry attempt #${cfg.currentRetryAttempt}`);
                                 setError('We use a free API, there were too many requests it refreshes automatically after 60 seconds');
